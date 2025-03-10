@@ -5,35 +5,17 @@
 </head>
 <body>
     <h1>Welcome to Iederees Francis' Downloads</h1>
-    <p>Here are the files you can download:</p>
-    <ul id="fileList">
-        </ul>
-    <p>If you like my work, please feel free to donate to the account details provided below.</p>
+
+    <h2>Downloads:</h2>
+    <ul>
+        <li><a href="jieke/Cape Town Dhikr aka Jieke Track 01.mp4" download>Cape Town Dhikr aka Jieke Track 01.mp4</a></li>
+        <li><a href="jieke/readme.txt" download>readme.txt</a></li>
+    </ul>
+
+    <h2>Donation Information:</h2>
+    <p>If you appreciate my work, please consider making a donation.</p>
     <p>Account Name: Iederees Francis</p>
     <p>Account Number: 2118861508 (Nedbank Savings)</p>
 
-    <script>
-        // Get the list of files from the current directory.
-        // Important: This works best when the html file is in the same directory as the downloadable files.
-        function generateFileList() {
-            const fileList = document.getElementById('fileList');
-            //this is a very simple simulation. In a real world senario, when the files are in a github repository, you will need to call the github api.
-            //For this simple example, we are using a hardcoded array.
-            const files = ["MyFile.zip", "MyImage.jpg", "AnotherFile.pdf"];
-
-            files.forEach(file => {
-                const listItem = document.createElement('li');
-                const link = document.createElement('a');
-                link.href = file;
-                link.textContent = file;
-                link.download = file; // Ensures the file is downloaded
-                listItem.appendChild(link);
-                fileList.appendChild(listItem);
-            });
-        }
-
-        // Call the function to generate the list when the page loads.
-        window.onload = generateFileList;
-    </script>
 </body>
 </html>
