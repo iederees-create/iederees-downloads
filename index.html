@@ -3,10 +3,76 @@
 <head>
     <title>Iederees Francis Downloads</title>
     <style>
-        body { font-family: sans-serif; }
-        .page-link { display: block; margin: 10px 0; }
-        .donate { margin-top: 20px; }
-        .advert { border: 1px solid #ccc; padding: 10px; margin-top: 20px; }
+        /* CSS from above */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f0;
+            color: #333;
+        }
+
+        h1 {
+            color: #006400;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #e0eee0;
+            margin: 0;
+        }
+
+        .page-link {
+            display: block;
+            margin: 10px auto;
+            width: 90%;
+            max-width: 800px;
+            padding: 15px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            color: #006400;
+        }
+
+        .page-link:hover {
+            background-color: #e8f5e9;
+        }
+
+        .donate, .advert {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8fff8;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+        }
+
+        .advert img {
+            width: 50px;
+            display: block;
+            margin: 10px auto;
+        }
+
+        a.floating-whatsapp {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        a.floating-whatsapp img {
+            width: 50px;
+            margin-top: 5px;
+        }
     </style>
 </head>
 <body>
@@ -26,8 +92,11 @@
 
     <div class="advert">
         <p>If you like this website and want me to create a website for your business, contact me on WhatsApp by clicking the WhatsApp icon. You can talk directly to me. My rates are super affordable. Whether you're selling a product or services, I can bring your business online. Contact me now!</p>
-        <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank"><img src="whatsapp-icon.png" alt="WhatsApp" width="50"></a>
+        <a href="https://wa.me/27686197361" target="_blank"><img src="images/whatsapp.png" alt="WhatsApp" width="50"></a>
     </div>
 
+    <a href="https://wa.me/27686197361?text=" class="floating-whatsapp">
+        <img src="images/whatsapp.png" alt="WhatsApp Chat">
+    </a>
 </body>
 </html>
