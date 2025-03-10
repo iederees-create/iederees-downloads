@@ -3,11 +3,82 @@
 <head>
     <title>Jieke - Iederees Francis</title>
     <style>
-        body { font-family: sans-serif; }
-        .video-container { margin: 20px 0; }
-        .nav-buttons { margin-bottom: 10px; }
-        .donate { margin-top: 20px; }
-        .advert { border: 1px solid #ccc; padding: 10px; margin-top: 20px; }
+        /* CSS from above */
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f0;
+            color: #333;
+        }
+        h1 {
+            color: #006400;
+            text-align: center;
+            padding: 20px 0;
+            background-color: #e0eee0;
+            margin: 0;
+        }
+        .video-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .nav-buttons {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .nav-buttons button, .nav-buttons a {
+            padding: 10px 20px;
+            margin: 0 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .nav-buttons button:hover, .nav-buttons a:hover {
+            background-color: #3e8e41;
+        }
+        .donate, .advert {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            background-color: #f8fff8;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+        }
+        .advert img {
+            width: 50px;
+            display: block;
+            margin: 10px auto;
+        }
+        a.floating-whatsapp {
+            position: fixed;
+            width: 60px;
+            height: 60px;
+            bottom: 40px;
+            right: 40px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50px;
+            text-align: center;
+            font-size: 30px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+        a.floating-whatsapp img {
+            width: 50px;
+            margin-top: 5px;
+        }
+        a {
+            color: #006400;
+        }
     </style>
 </head>
 <body>
@@ -19,6 +90,7 @@
             Your browser does not support the video tag.
         </video>
         <div class="nav-buttons">
+            <button onclick="location.href='Cape Town Dhikr aka Jieke Track 15.mp4'">Previous</button>
             <button onclick="location.href='Cape Town Dhikr aka Jieke Track 02.mp4'">Next</button>
             <a href="Cape Town Dhikr aka Jieke Track 01.mp4" download>Download</a>
         </div>
@@ -33,10 +105,13 @@
 
     <div class="advert">
         <p>If you like this website and want me to create a website for your business, contact me on WhatsApp by clicking the WhatsApp icon. You can talk directly to me. My rates are super affordable. Whether you're selling a product or services, I can bring your business online. Contact me now!</p>
-        <a href="https://wa.me/YOUR_WHATSAPP_NUMBER" target="_blank"><img src="../whatsapp-icon.png" alt="WhatsApp" width="50"></a>
+        <a href="https://wa.me/27686197361" target="_blank"><img src="../images/whatsapp.png" alt="WhatsApp" width="50"></a>
     </div>
 
     <a href="../index.html">Back to Home</a>
 
+    <a href="https://wa.me/27686197361?text=" class="floating-whatsapp">
+        <img src="../images/whatsapp.png    alt="WhatsApp Chat">
+    </a>
 </body>
 </html>
