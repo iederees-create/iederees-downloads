@@ -9,38 +9,22 @@
             padding: 0;
             background-color: #f0f8f0;
             color: #333;
+            text-align: center;
         }
         h1 {
             color: #006400;
-            text-align: center;
-            padding: 15px 0;
+            padding: 20px 0;
             background-color: #e0eee0;
             margin: 0;
-        }
-        .donate, .advert {
-            margin: 10px auto;
-            width: 90%;
-            max-width: 800px;
-            padding: 15px;
-            background-color: #f8fff8;
-            border: 1px solid #c8e6c9;
-            border-radius: 8px;
-            text-align: center;
-        }
-        .advert img {
-            width: 40px;
-            display: block;
-            margin: 5px auto;
         }
         .video-container {
             margin: 10px auto;
             width: 90%;
             max-width: 600px;
-            padding: 15px;
+            padding: 10px;
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-            text-align: center;
         }
         video {
             width: 100%;
@@ -48,11 +32,11 @@
             height: auto;
         }
         .nav-buttons {
-            margin-top: 5px;
+            margin-top: 10px;
         }
         .nav-buttons button, .nav-buttons a {
             padding: 8px 15px;
-            margin: 3px;
+            margin: 5px;
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -63,17 +47,31 @@
         .nav-buttons button:hover, .nav-buttons a:hover {
             background-color: #3e8e41;
         }
+        .donate, .advert {
+            margin: 10px auto;
+            width: 90%;
+            max-width: 600px;
+            padding: 15px;
+            background-color: #f8fff8;
+            border: 1px solid #c8e6c9;
+            border-radius: 8px;
+        }
+        .advert img {
+            width: 40px;
+            display: block;
+            margin: 10px auto;
+        }
         a.floating-whatsapp {
             position: fixed;
             width: 50px;
             height: 50px;
-            bottom: 30px;
-            right: 30px;
+            bottom: 20px;
+            right: 20px;
             background-color: #25D366;
             color: #FFF;
             border-radius: 50%;
             text-align: center;
-            font-size: 24px;
+            font-size: 26px;
             box-shadow: 2px 2px 3px #999;
             z-index: 100;
         }
@@ -81,10 +79,26 @@
             width: 40px;
             margin-top: 5px;
         }
+        a {
+            color: #006400;
+        }
     </style>
 </head>
 <body>
     <h1>Cape Town Jieke</h1>
+
+    <div class="video-container">
+        <p id="video-title" style="font-weight: bold; font-size: 16px;"></p>
+        <video id="video-player" controls>
+            <source id="video-source" src="Cape Town Dhikr aka Jieke Track 02.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="nav-buttons">
+            <button onclick="changeVideo(-1)">Previous</button>
+            <button onclick="changeVideo(1)">Next</button>
+            <a id="download-link" href="Cape Town Dhikr aka Jieke Track 02.mp4" download>Download</a>
+        </div>
+    </div>
 
     <div class="donate">
         <h2>Donation Information:</h2>
@@ -100,19 +114,6 @@
         </a>
     </div>
 
-    <div class="video-container">
-        <p id="video-title" style="font-weight: bold; font-size: 16px;"></p>
-        <video id="video-player" controls>
-            <source id="video-source" src="Cape Town Dhikr aka Jieke Track 02.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="nav-buttons">
-            <button onclick="changeVideo(-1)">Previous</button>
-            <button onclick="changeVideo(1)">Next</button>
-            <a id="download-link" href="Cape Town Dhikr aka Jieke Track 02.mp4" download>Download</a>
-        </div>
-    </div>
-
     <a href="../index.html">Back to Home</a>
 
     <a href="https://wa.me/27686197361?text=" class="floating-whatsapp">
@@ -120,6 +121,7 @@
     </a>
 
     <script>
+        // List of video files
         const videos = [
             "Cape Town Dhikr aka Jieke Track 01.mp4",
             "Cape Town Dhikr aka Jieke Track 02.mp4",
@@ -145,21 +147,22 @@
             let downloadLink = document.getElementById("download-link");
 
             videoSource.src = videos[currentIndex];
-            videoPlayer.load();
+            videoPlayer.load();  // Reload the video player with the new source
             videoTitle.textContent = "Now Playing: " + videos[currentIndex];
-            downloadLink.href = videos[currentIndex];
+            downloadLink.href = videos[currentIndex];  // Update download link
         }
 
         function changeVideo(direction) {
             currentIndex += direction;
             if (currentIndex < 0) {
-                currentIndex = videos.length - 1;
+                currentIndex = videos.length - 1;  // Loop to last video
             } else if (currentIndex >= videos.length) {
-                currentIndex = 0;
+                currentIndex = 0;  // Loop to first video
             }
             updateVideo();
         }
 
+        // Initialize video title on page load
         document.addEventListener("DOMContentLoaded", updateVideo);
     </script>
 </body>
