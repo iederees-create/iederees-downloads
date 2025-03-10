@@ -1,9 +1,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Jieke - Iederees Francis</title>
+    <title>Cape Town Jieke - Iederees Francis</title>
     <style>
-        /* CSS from above */
         body {
             font-family: sans-serif;
             margin: 0;
@@ -26,14 +25,14 @@
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            text-align: center;
         }
         .nav-buttons {
-            text-align: center;
             margin-top: 10px;
         }
         .nav-buttons button, .nav-buttons a {
             padding: 10px 20px;
-            margin: 0 10px;
+            margin: 5px;
             background-color: #4CAF50;
             color: white;
             border: none;
@@ -82,17 +81,18 @@
     </style>
 </head>
 <body>
-    <h1>Jieke</h1>
+    <h1>Cape Town Jieke</h1>
 
     <div class="video-container">
-        <video width="640" height="360" controls>
-            <source src="Cape Town Dhikr aka Jieke Track 01.mp4" type="video/mp4">
+        <p id="video-title" style="font-weight: bold; font-size: 18px;"></p>
+        <video id="video-player" width="640" height="360" controls>
+            <source id="video-source" src="Cape Town Dhikr aka Jieke Track 02.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="nav-buttons">
-            <button onclick="location.href='Cape Town Dhikr aka Jieke Track 15.mp4'">Previous</button>
-            <button onclick="location.href='Cape Town Dhikr aka Jieke Track 02.mp4'">Next</button>
-            <a href="Cape Town Dhikr aka Jieke Track 01.mp4" download>Download</a>
+            <button onclick="changeVideo(-1)">Previous</button>
+            <button onclick="changeVideo(1)">Next</button>
+            <a id="download-link" href="Cape Town Dhikr aka Jieke Track 02.mp4" download>Download</a>
         </div>
     </div>
 
@@ -104,14 +104,60 @@
     </div>
 
     <div class="advert">
-        <p>If you like this website and want me to create a website for your business, contact me on WhatsApp by clicking the WhatsApp icon. You can talk directly to me. My rates are super affordable. Whether you're selling a product or services, I can bring your business online. Contact me now!</p>
+        <p>If you like this website and want me to create a website for your business, contact me on WhatsApp by clicking the WhatsApp icon.</p>
         <a href="https://wa.me/27686197361" target="_blank"><img src="../images/whatsapp.png" alt="WhatsApp" width="50"></a>
     </div>
 
     <a href="../index.html">Back to Home</a>
 
     <a href="https://wa.me/27686197361?text=" class="floating-whatsapp">
-        <img src="../images/whatsapp.png    alt="WhatsApp Chat">
+        <img src="../images/whatsapp.png" alt="WhatsApp Chat">
     </a>
+
+    <script>
+        // List of video files
+        const videos = [
+            "Cape Town Dhikr aka Jieke Track 01.mp4",
+            "Cape Town Dhikr aka Jieke Track 02.mp4",
+            "Cape Town Dhikr aka Jieke Track 03.mp4",
+            "Cape Town Dhikr aka Jieke Track 04.mp4",
+            "Cape Town Dhikr aka Jieke Track 05.mp4",
+            "Cape Town Dhikr aka Jieke Track 06.mp4",
+            "Cape Town Dhikr aka Jieke Track 07.mp4",
+            "Cape Town Dhikr aka Jieke Track 08.mp4",
+            "Cape Town Dhikr aka Jieke Track 09.mp4",
+            "Cape Town Dhikr aka Jieke Track 10 - Soraya.mp4",
+            "Cape Town Dhikr aka Jieke Track 13.mp4",
+            "Cape Town Dhikr aka Jieke Track 14.mp4",
+            "Cape Town Dhikr aka Jieke Track 15.mp4"
+        ];
+
+        let currentIndex = 0;
+
+        function updateVideo() {
+            let videoPlayer = document.getElementById("video-player");
+            let videoSource = document.getElementById("video-source");
+            let videoTitle = document.getElementById("video-title");
+            let downloadLink = document.getElementById("download-link");
+
+            videoSource.src = videos[currentIndex];
+            videoPlayer.load();  // Reload the video player with the new source
+            videoTitle.textContent = "Now Playing: " + videos[currentIndex];
+            downloadLink.href = videos[currentIndex];  // Update download link
+        }
+
+        function changeVideo(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) {
+                currentIndex = videos.length - 1;  // Loop to last video
+            } else if (currentIndex >= videos.length) {
+                currentIndex = 0;  // Loop to first video
+            }
+            updateVideo();
+        }
+
+        // Initialize video title on page load
+        document.addEventListener("DOMContentLoaded", updateVideo);
+    </script>
 </body>
 </html>
