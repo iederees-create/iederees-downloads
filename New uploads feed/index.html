@@ -3,13 +3,14 @@
 <head>
     <title>New Uploads Feed - Iederees Francis</title>
     <style>
-        /* CSS from above */
+        /* Light Theme (Default) */
         body {
             font-family: sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f0f8f0;
             color: #333;
+            transition: background-color 0.3s, color 0.3s;
         }
         h1 {
             color: #006400;
@@ -17,6 +18,7 @@
             padding: 20px 0;
             background-color: #e0eee0;
             margin: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
         .feed-item {
             margin: 20px auto;
@@ -26,6 +28,7 @@
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
         .donate, .advert {
             margin: 20px auto;
@@ -35,6 +38,7 @@
             background-color: #f8fff8;
             border: 1px solid #c8e6c9;
             border-radius: 8px;
+            transition: background-color 0.3s, border-color 0.3s;
         }
         .advert img {
             width: 50px;
@@ -54,6 +58,7 @@
             font-size: 30px;
             box-shadow: 2px 2px 3px #999;
             z-index: 100;
+            transition: background-color 0.3s;
         }
         a.floating-whatsapp img {
             width: 50px;
@@ -61,36 +66,71 @@
         }
         a {
             color: #006400;
-            
-              /* New Styles for Back to Home Button */
+            transition: color 0.3s;
+        }
+
+        /* New Styles for Back to Home Button */
         .back-to-home {
             display: inline-block;
-            margin: 20px; /* Adds space around the button */
-            padding: 15px 30px; /* Makes the button larger and easier to press */
-            background-color: #006400; /* Matches the color scheme */
-            color: white; /* Text color */
-            text-decoration: none; /* Removes underline */
-            border-radius: 5px; /* Rounded corners */
-            font-size: 18px; /* Matches the size of other buttons */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-            transition: background-color 0.3s ease; /* Smooth hover effect */
+            margin: 20px;
+            padding: 15px 30px;
+            background-color: #006400;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
         }
-
         .back-to-home:hover {
-            background-color: #004d00; /* Darker green on hover */
+            background-color: #004d00;
         }
-
-        /* Positioning the button at the bottom */
         .footer {
             position: fixed;
-            bottom: 20px; /* Space from the bottom */
-            left: 50%; /* Centers horizontally */
-            transform: translateX(-50%); /* Ensures perfect centering */
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
             text-align: center;
+        }
+
+        /* Dark Theme Styles */
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+        body.dark-theme h1 {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+        body.dark-theme .feed-item {
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+        body.dark-theme .donate, body.dark-theme .advert {
+            background-color: #444;
+            border-color: #555;
+            color: #f0f0f0;
+        }
+        body.dark-theme a {
+            color: #4CAF50;
+        }
+        body.dark-theme .back-to-home {
+            background-color: #4CAF50;
+        }
+        body.dark-theme .back-to-home:hover {
+            background-color: #3e8e41;
+        }
+        body.dark-theme a.floating-whatsapp {
+            background-color: #25D366;
         }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" style="position: fixed; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Toggle Dark Mode
+    </button>
+
     <h1>New Uploads Feed</h1>
 
     <div class="feed-item">
@@ -145,11 +185,25 @@
         <a href="https://wa.me/27686197361" target="_blank"><img src="../images/whatsapp.png" alt="WhatsApp" width="50"></a>
     </div>
 
-      <a href="../index.html" class="back-to-home">Back to Home</a>
+    <div class="footer">
+        <a href="../index.html" class="back-to-home">Back to Home</a>
     </div>
 
     <a href="https://wa.me/27686197361?text=" class="floating-whatsapp">
         <img src="../images/whatsapp.png" alt="WhatsApp Chat">
     </a>
+
+    <script>
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById("theme-toggle");
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+            if (document.body.classList.contains("dark-theme")) {
+                themeToggle.textContent = "Toggle Light Mode";
+            } else {
+                themeToggle.textContent = "Toggle Dark Mode";
+            }
+        });
+    </script>
 </body>
 </html>
