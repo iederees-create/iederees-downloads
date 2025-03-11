@@ -3,6 +3,7 @@
 <head>
     <title>Cape Town Jieke - Iederees Francis</title>
     <style>
+        /* Light Theme (Default) */
         body {
             font-family: sans-serif;
             margin: 0;
@@ -10,12 +11,14 @@
             background-color: #f0f8f0;
             color: #333;
             text-align: center;
+            transition: background-color 0.3s, color 0.3s;
         }
         h1 {
             color: #006400;
             padding: 20px 0;
             background-color: #e0eee0;
             margin: 0;
+            transition: background-color 0.3s, color 0.3s;
         }
         .video-container {
             margin: 10px auto;
@@ -25,14 +28,7 @@
             background-color: white;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
-        }
-        video {
-            width: 100%;
-            max-width: 780px;
-            height: auto;
-        }
-        .nav-buttons {
-            margin-top: 10px;
+            transition: background-color 0.3s, box-shadow 0.3s;
         }
         .nav-buttons button, .nav-buttons a {
             padding: 18px 25px;
@@ -40,37 +36,25 @@
             background-color: #4CAF50;
             color: white;
             border: none;
-              font-size: 40px;
+            font-size: 40px;
             border-radius: 5px;
             text-decoration: none;
             cursor: pointer;
+            transition: background-color 0.3s;
         }
         .nav-buttons button:hover, .nav-buttons a:hover {
             background-color: #3e8e41;
         }
-        /* Styles for Donate and Advert Sections */
         .donate, .advert {
-            margin: 20px auto; /* Increased margin for spacing */
+            margin: 20px auto;
             width: 90%;
-            max-width: 720px; /* Increased max-width to match video container */
-            padding: 20px; /* Increased padding for more space inside */
+            max-width: 720px;
+            padding: 20px;
             background-color: #f8fff8;
-            border: 2px solid #c8e6c9; /* Thicker border for emphasis */
-            border-radius: 12px; /* Larger border radius for rounded corners */
-            text-align: left; /* Align text to the left for better readability */
-        }
-        .donate h2, .advert h2 {
-            font-size: 48px; /* Larger font size for headings */
-            margin-bottom: 10px; /* Space between heading and content */
-        }
-        .donate p, .advert p {
-            font-size: 18px; /* Larger font size for paragraph text */
-            line-height: 1.6; /* Improved line spacing for readability */
-        }
-        .advert img {
-            width: 50px; /* Slightly larger image */
-            display: block;
-            margin: 10px auto;
+            border: 2px solid #c8e6c9;
+            border-radius: 12px;
+            text-align: left;
+            transition: background-color 0.3s, border-color 0.3s;
         }
         a.floating-whatsapp {
             position: fixed;
@@ -85,18 +69,48 @@
             font-size: 26px;
             box-shadow: 2px 2px 3px #999;
             z-index: 100;
+            transition: background-color 0.3s;
         }
-        a.floating-whatsapp img {
-            width: 40px;
-            margin-top: 5px;
+
+        /* Dark Theme */
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
         }
-        a {
-            color: #006400;
+        body.dark-theme h1 {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+        body.dark-theme .video-container {
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+        body.dark-theme .donate, body.dark-theme .advert {
+            background-color: #444;
+            border-color: #555;
+            color: #f0f0f0;
+        }
+        body.dark-theme a {
+            color: #4CAF50;
+        }
+        body.dark-theme .nav-buttons button, body.dark-theme .nav-buttons a {
+            background-color: #555;
+        }
+        body.dark-theme .nav-buttons button:hover, body.dark-theme .nav-buttons a:hover {
+            background-color: #666;
+        }
+        body.dark-theme a.floating-whatsapp {
+            background-color: #25D366;
         }
     </style>
 </head>
 <body>
     <h1>Cape Town Jieke</h1>
+
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" style="position: fixed; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Toggle Dark Mode
+    </button>
 
     <div class="video-container">
         <p id="video-title" style="font-weight: bold; font-size: 16px;"></p>
@@ -161,6 +175,7 @@
             videoPlayer.load();  // Reload the video player with the new source
             videoTitle.textContent = "Now Playing: " + videos[currentIndex];
             downloadLink.href = videos[currentIndex];  // Update download link
+            videoPlayer.play();  // Automatically play the video
         }
 
         function changeVideo(direction) {
@@ -180,7 +195,17 @@
         document.getElementById("video-player").addEventListener("ended", () => {
             changeVideo(1);  // Play the next video when the current one ends
         });
-        
+
+        // Theme Toggle Functionality
+        const themeToggle = document.getElementById("theme-toggle");
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+            if (document.body.classList.contains("dark-theme")) {
+                themeToggle.textContent = "Toggle Light Mode";
+            } else {
+                themeToggle.textContent = "Toggle Dark Mode";
+            }
+        });
     </script>
 </body>
 </html>
