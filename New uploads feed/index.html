@@ -61,6 +61,32 @@
         }
         a {
             color: #006400;
+            
+              /* New Styles for Back to Home Button */
+        .back-to-home {
+            display: inline-block;
+            margin: 20px; /* Adds space around the button */
+            padding: 15px 30px; /* Makes the button larger and easier to press */
+            background-color: #006400; /* Matches the color scheme */
+            color: white; /* Text color */
+            text-decoration: none; /* Removes underline */
+            border-radius: 5px; /* Rounded corners */
+            font-size: 18px; /* Matches the size of other buttons */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
+            transition: background-color 0.3s ease; /* Smooth hover effect */
+        }
+
+        .back-to-home:hover {
+            background-color: #004d00; /* Darker green on hover */
+        }
+
+        /* Positioning the button at the bottom */
+        .footer {
+            position: fixed;
+            bottom: 20px; /* Space from the bottom */
+            left: 50%; /* Centers horizontally */
+            transform: translateX(-50%); /* Ensures perfect centering */
+            text-align: center;
         }
     </style>
 </head>
