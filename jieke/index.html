@@ -175,6 +175,12 @@
 
         // Initialize video title on page load
         document.addEventListener("DOMContentLoaded", updateVideo);
+
+        // Add event listener for when the video ends
+        document.getElementById("video-player").addEventListener("ended", () => {
+            changeVideo(1);  // Play the next video when the current one ends
+        });
+        
     </script>
 </body>
 </html>
