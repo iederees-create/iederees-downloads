@@ -3,7 +3,7 @@
 <head>
     <title>Cape Town dhikr - Iederees Francis</title>
     <style>
-        /* Light Theme (Default) */
+        /* Existing CSS (unchanged) */
         body {
             font-family: sans-serif;
             margin: 0;
@@ -100,7 +100,31 @@
             color: #006400;
         }
 
-        /* Dark Theme */
+        /* New Styles for Back to Home Button */
+        .back-to-home {
+            display: inline-block;
+            margin: 20px;
+            padding: 15px 30px;
+            background-color: #006400;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+        .back-to-home:hover {
+            background-color: #004d00;
+        }
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+
+        /* Dark Theme Styles */
         body.dark-theme {
             background-color: #1a1a1a;
             color: #f0f0f0;
@@ -129,36 +153,21 @@
         }
         body.dark-theme a.floating-whatsapp {
             background-color: #25D366;
-
-              /* New Styles for Back to Home Button */
-        .back-to-home {
-            display: inline-block;
-            margin: 20px; /* Adds space around the button */
-            padding: 15px 30px; /* Makes the button larger and easier to press */
-            background-color: #006400; /* Matches the color scheme */
-            color: white; /* Text color */
-            text-decoration: none; /* Removes underline */
-            border-radius: 5px; /* Rounded corners */
-            font-size: 18px; /* Matches the size of other buttons */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adds a subtle shadow */
-            transition: background-color 0.3s ease; /* Smooth hover effect */
         }
-
-        .back-to-home:hover {
-            background-color: #004d00; /* Darker green on hover */
+        body.dark-theme .back-to-home {
+            background-color: #4CAF50;
         }
-
-        /* Positioning the button at the bottom */
-        .footer {
-            position: fixed;
-            bottom: 20px; /* Space from the bottom */
-            left: 50%; /* Centers horizontally */
-            transform: translateX(-50%); /* Ensures perfect centering */
-            text-align: center;
+        body.dark-theme .back-to-home:hover {
+            background-color: #3e8e41;
         }
     </style>
 </head>
 <body>
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" style="position: fixed; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Toggle Dark Mode
+    </button>
+
     <h1>Cape Town dhikr</h1>
 
     <div class="video-container">
@@ -186,7 +195,9 @@
         <a href="https://wa.me/27686197361" target="_blank"><img src="../images/whatsapp.png" alt="WhatsApp" width="50"></a>
     </div>
 
-    <a href="../index.html">Back to Home</a>
+    <div class="footer">
+        <a href="../index.html" class="back-to-home">Back to Home</a>
+    </div>
 
     <a href="https://wa.me/27686197361?text=" class="floating-whatsapp">
         <img src="../images/whatsapp.png" alt="WhatsApp Chat">
@@ -212,7 +223,7 @@
 
         let currentIndex = 0;
 
-       function updateVideo() {
+        function updateVideo() {
             let videoPlayer = document.getElementById("video-player");
             let videoSource = document.getElementById("video-source");
             let videoTitle = document.getElementById("video-title");
