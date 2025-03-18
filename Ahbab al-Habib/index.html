@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahbab al-Habib - Iederees Francis</title>
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8f0;
+            color: #333;
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+
+        a {
+            color: #006400;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #006400, #4CAF50);
+            color: white;
+            padding: 60px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 48px;
+            margin: 0;
+        }
+
+        .hero p {
+            font-size: 20px;
+            margin: 10px 0 0;
+        }
+
+        /* Video Grid */
+        .video-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .video-thumbnail {
+            cursor: pointer;
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .video-thumbnail img {
+            width: 100%;
+            border-radius: 8px;
+            transition: transform 0.3s;
+        }
+
+        .video-thumbnail:hover img {
+            transform: scale(1.05);
+        }
+
+        /* Video Player */
+        .video-container {
+            margin: 20px auto;
+            width: 90%;
+            max-width: 950px;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            transition: background-color 0.3s, box-shadow 0.3s;
+        }
+
+        video {
+            width: 100%;
+            max-width: 780px;
+            height: auto;
+            border-radius: 8px;
+        }
+
+        .nav-buttons {
+            margin-top: 10px;
+        }
+
+        .nav-buttons button, .nav-buttons a {
+            padding: 10px 20px;
+            margin: 5px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-buttons button:hover, .nav-buttons a:hover {
+            background-color: #3e8e41;
+        }
+
+        /* Search Bar */
+        .search-container {
+            margin: 20px auto;
+            max-width: 500px;
+            padding: 0 20px;
+        }
+
+        #search-bar {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        footer a {
+            color: #4CAF50;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        /* Dark Theme */
+        body.dark-theme {
+            background-color: #1a1a1a;
+            color: #f0f0f0;
+        }
+
+        body.dark-theme .hero {
+            background: linear-gradient(135deg, #333, #555);
+        }
+
+        body.dark-theme .video-container {
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        }
+
+        body.dark-theme .nav-buttons button, body.dark-theme .nav-buttons a {
+            background-color: #555;
+        }
+
+        body.dark-theme .nav-buttons button:hover, body.dark-theme .nav-buttons a:hover {
+            background-color: #666;
+        }
+    </style>
+</head>
+<body>
+    <!-- Theme Toggle Button -->
+    <button id="theme-toggle" style="position: fixed; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
+        Toggle Dark Mode
+    </button>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Ahbab al-Habib</h1>
+        <p>Listen to the beautiful melodies of Ahbab al-Habib</p>
+    </div>
+
+    <!-- Search Bar -->
+    <div class="search-container">
+        <input type="text" id="search-bar" placeholder="Search videos..." oninput="filterVideos()">
+    </div>
+
+    <!-- Video Grid -->
+    <div class="video-grid" id="video-grid">
+        <!-- Thumbnails will be dynamically generated -->
+    </div>
+
+    <!-- Video Player -->
+    <div class="video-container">
+        <p id="video-title" style="font-weight: bold; font-size: 18px;"></p>
+        <video id="video-player" width="640" height="360" controls>
+            <source id="video-source" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="nav-buttons">
+            <button onclick="changeVideo(-1)" aria-label="Previous Video">Previous</button>
+            <button onclick="changeVideo(1)" aria-label="Next Video">Next</button>
+            <a id="download-link" href="" download>Download</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2023 Iederees Francis. All rights reserved.</p>
+        <a href="../privacy-policy.html">Privacy Policy</a> | 
+        <a href="../terms-of-service.html">Terms of Service</a>
+    </footer>
+
+    <script>
+        // Video Data
+        const videos = [
+            { title: "Shufnal Habīb Intro", file: "Shufnal Habīb Intro.mp4", thumbnail: "thumb1.jpg" },
+            { title: "Saqāni Mudāmi", file: "Saqāni Mudāmi.mp4", thumbnail: "thumb2.jpg" },
+            { title: "Lakafī Qalbī Yā Darū", file: "Lakafī Qalbī Yā Darū.mp4", thumbnail: "thumb2.jpg" },
+            { title: "Ishrabb Sharāb", file: "Ishrabb Sharāb.mp4", thumbnail: "thumb3.jpg" },
+            { title: "Dārat Ku'oos Al-Gharam", file: "Dārat Ku'oos Al-Gharam.mp4", thumbnail: "thumb3.jpg" },
+          { title: "Bismillāh 'umrit Laylitna", file: "Bismillāh 'umrit Laylitna.mp4", thumbnail: "thumb3.jpg" },
+          { title: "Allāh Allāh", file: "Allāh Allāh.mp4", thumbnail: "thumb3.jpg" },// Add more videos with thumbnails
+        ];
+
+        let currentIndex = 0;
+
+        // Generate Video Thumbnails
+        function generateThumbnails() {
+            const videoGrid = document.getElementById("video-grid");
+            videoGrid.innerHTML = videos.map(video => `
+                <div class="video-thumbnail" onclick="playVideo('${video.file}')">
+                    <img src="placeholder.jpg" data-src="${video.thumbnail}" alt="${video.title}" class="lazy-load">
+                    <p>${video.title}</p>
+                </div>
+            `).join("");
+        }
+
+        // Play Selected Video
+        function playVideo(file) {
+            currentIndex = videos.findIndex(video => video.file === file);
+            updateVideo();
+        }
+
+        // Update Video Player
+        function updateVideo() {
+            const videoPlayer = document.getElementById("video-player");
+            const videoSource = document.getElementById("video-source");
+            const videoTitle = document.getElementById("video-title");
+            const downloadLink = document.getElementById("download-link");
+
+            videoSource.src = videos[currentIndex].file;
+            videoPlayer.load();
+            videoTitle.textContent = "Now Playing: " + videos[currentIndex].title;
+            downloadLink.href = videos[currentIndex].file;
+            videoPlayer.play();
+        }
+
+        // Change Video
+        function changeVideo(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = videos.length - 1;
+            if (currentIndex >= videos.length) currentIndex = 0;
+            updateVideo();
+        }
+
+        // Filter Videos
+        function filterVideos() {
+            const searchTerm = document.getElementById("search-bar").value.toLowerCase();
+            const filteredVideos = videos.filter(video => video.title.toLowerCase().includes(searchTerm));
+            const videoGrid = document.getElementById("video-grid");
+            videoGrid.innerHTML = filteredVideos.map(video => `
+                <div class="video-thumbnail" onclick="playVideo('${video.file}')">
+                    <img src="${video.thumbnail}" alt="${video.title}">
+                    <p>${video.title}</p>
+                </div>
+            `).join("");
+        }
+
+        // Lazy Load Images
+        document.addEventListener("DOMContentLoaded", () => {
+            generateThumbnails();
+            updateVideo();
+
+            const lazyImages = document.querySelectorAll(".lazy-load");
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        observer.unobserve(img);
+                    }
+                });
+            });
+
+            lazyImages.forEach(img => observer.observe(img));
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById("theme-toggle");
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-theme");
+            themeToggle.textContent = document.body.classList.contains("dark-theme") ? "Toggle Light Mode" : "Toggle Dark Mode";
+        });
+    </script>
+</body>
+</html>
