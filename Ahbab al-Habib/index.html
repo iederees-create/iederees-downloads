@@ -1,94 +1,39 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahbab al-Habib - Iederees Francis</title>
     <style>
-        /* General Styles */
+        /* Dark Theme Styles */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #f0f8f0;
-            color: #333;
-            line-height: 1.6;
-            transition: background-color 0.3s, color 0.3s;
-        }
-
-        h1, h2, h3 {
-            font-weight: 600;
-        }
-
-        a {
-            color: #006400;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        /* Hero Section */
-        .hero {
-            background: linear-gradient(135deg, #006400, #4CAF50);
-            color: white;
-            padding: 60px 20px;
-            margin-bottom: 20px;
+            background-color: #1a1a1a;
+            color: #f0f0f0;
             text-align: center;
         }
 
-        .hero h1 {
-            font-size: 48px;
+        h1 {
+            color: #f0f0f0;
+            padding: 20px 0;
+            background-color: #333;
             margin: 0;
         }
 
-        .hero p {
-            font-size: 20px;
-            margin: 10px 0 0;
-        }
-
-        /* Video Grid */
-        .video-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            padding: 20px;
-        }
-
-        .video-thumbnail {
-            cursor: pointer;
-            text-align: center;
-            transition: transform 0.3s;
-        }
-
-        .video-thumbnail img {
-            width: 100%;
-            border-radius: 8px;
-            transition: transform 0.3s;
-        }
-
-        .video-thumbnail:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Video Player */
         .video-container {
-            margin: 20px auto;
+            margin: 10px auto;
             width: 90%;
             max-width: 950px;
-            padding: 20px;
-            background-color: white;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            background-color: #333;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
             border-radius: 8px;
-            transition: background-color 0.3s, box-shadow 0.3s;
         }
 
         video {
             width: 100%;
             max-width: 780px;
             height: auto;
-            border-radius: 8px;
         }
 
         .nav-buttons {
@@ -96,123 +41,139 @@
         }
 
         .nav-buttons button, .nav-buttons a {
-            padding: 10px 20px;
+            padding: 18px 25px;
             margin: 5px;
-            background-color: #4CAF50;
+            background-color: #555;
             color: white;
             border: none;
-            font-size: 16px;
+            font-size: 40px;
             border-radius: 5px;
+            text-decoration: none;
             cursor: pointer;
             transition: background-color 0.3s;
         }
 
         .nav-buttons button:hover, .nav-buttons a:hover {
-            background-color: #3e8e41;
+            background-color: #666;
         }
 
-        /* Search Bar */
-        .search-container {
+        .donate, .advert {
             margin: 20px auto;
-            max-width: 500px;
-            padding: 0 20px;
-        }
-
-        #search-bar {
-            width: 100%;
-            padding: 10px;
-            font-size: 16px;
-            border: 2px solid #ccc;
-            border-radius: 5px;
-        }
-
-        /* Footer */
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
+            width: 90%;
+            max-width: 720px;
             padding: 20px;
-            margin-top: 40px;
-        }
-
-        footer a {
-            color: #4CAF50;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Dark Theme */
-        body.dark-theme {
-            background-color: #1a1a1a;
+            background-color: #444;
+            border: 2px solid #555;
+            border-radius: 12px;
+            text-align: left;
             color: #f0f0f0;
         }
 
-        body.dark-theme .hero {
-            background: linear-gradient(135deg, #333, #555);
+        .donate h2, .advert h2 {
+            font-size: 48px;
+            margin-bottom: 10px;
         }
 
-        body.dark-theme .video-container {
-            background-color: #333;
-            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+        .donate p, .advert p {
+            font-size: 18px;
+            line-height: 1.6;
         }
 
-        body.dark-theme .nav-buttons button, body.dark-theme .nav-buttons a {
-            background-color: #555;
+        .advert img {
+            width: 50px;
+            display: block;
+            margin: 10px auto;
         }
 
-        body.dark-theme .nav-buttons button:hover, body.dark-theme .nav-buttons a:hover {
-            background-color: #666;
+        a.floating-whatsapp {
+            position: fixed;
+            width: 50px;
+            height: 50px;
+            bottom: 20px;
+            right: 20px;
+            background-color: #25D366;
+            color: #FFF;
+            border-radius: 50%;
+            text-align: center;
+            font-size: 26px;
+            box-shadow: 2px 2px 3px #999;
+            z-index: 100;
+        }
+
+        a.floating-whatsapp img {
+            width: 40px;
+            margin-top: 5px;
+        }
+
+        a {
+            color: #4CAF50;
+        }
+
+        .back-to-home {
+            display: inline-block;
+            margin: 20px;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 18px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        .back-to-home:hover {
+            background-color: #3e8e41;
+        }
+
+        .footer {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
         }
     </style>
 </head>
 <body>
-    <!-- Theme Toggle Button -->
-    <button id="theme-toggle" style="position: fixed; top: 20px; right: 20px; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; cursor: pointer;">
-        Toggle Dark Mode
-    </button>
+    <h1>Ahbab al-Habib</h1>
 
-    <!-- Hero Section -->
-    <div class="hero">
-        <h1>Ahbab al-Habib</h1>
-        <p>Listen to the beautiful melodies of Ahbab al-Habib</p>
-    </div>
-
-    <!-- Search Bar -->
-    <div class="search-container">
-        <input type="text" id="search-bar" placeholder="Search videos..." oninput="filterVideos()">
-    </div>
-
-    <!-- Video Grid -->
-    <div class="video-grid" id="video-grid">
-        <!-- Thumbnails will be dynamically generated -->
-    </div>
-
-    <!-- Video Player -->
     <div class="video-container">
         <p id="video-title" style="font-weight: bold; font-size: 18px;"></p>
         <video id="video-player" width="640" height="360" controls>
-            <source id="video-source" src="" type="video/mp4">
+            <source id="video-source" src="Ahbab al-Habib 01.mp4" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="nav-buttons">
-            <button onclick="changeVideo(-1)" aria-label="Previous Video">Previous</button>
-            <button onclick="changeVideo(1)" aria-label="Next Video">Next</button>
-            <a id="download-link" href="" download>Download</a>
+            <button onclick="changeVideo(-1)">Previous</button>
+            <button onclick="changeVideo(1)">Next</button>
+            <a id="download-link" href="Ahbab al-Habib 01.mp4" download>Download</a>
         </div>
     </div>
 
-    <!-- Footer -->
-    <footer>
-        <p>&copy; 2023 Iederees Francis. All rights reserved.</p>
-        <a href="../privacy-policy.html">Privacy Policy</a> | 
-        <a href="../terms-of-service.html">Terms of Service</a>
-    </footer>
+    <div class="donate">
+        <h2>Donation Information:</h2>
+        <p>If you appreciate my work, please consider making a donation to keep this website up and running.</p>
+        <p>Account Name: Iederees Francis</p>
+        <p>Account Number: 2118861508 (Nedbank Savings)</p>
+    </div>
+
+    <div class="advert">
+        <p>If you like this website and want me to create a website for your business, contact me on WhatsApp by clicking the WhatsApp icon.</p>
+        <a href="https://wa.me/27686197361" target="_blank"><img src="../images/whatsapp.png" alt="WhatsApp" width="50"></a>
+    </div>
+
+    <div class="footer">
+        <a href="../index.html" class="back-to-home">Back to Home</a>
+    </div>
+
+    <a href="https://wa.me/27686197361?text=" class="floating-whatsapp">
+        <img src="../images/whatsapp.png" alt="WhatsApp Chat">
+    </a>
 
     <script>
-        // Video Data
-        const videos = [
+        // List of video files for Ahbab al-Habib
+         const videos = [
             { title: "Shufnal Habīb Intro", file: "Shufnal Habīb Intro.mp4", thumbnail: "thumb1.jpg" },
             { title: "Saqāni Mudāmi", file: "Saqāni Mudāmi.mp4", thumbnail: "thumb2.jpg" },
             { title: "Lakafī Qalbī Yā Darū", file: "Lakafī Qalbī Yā Darū.mp4", thumbnail: "thumb2.jpg" },
@@ -224,82 +185,35 @@
 
         let currentIndex = 0;
 
-        // Generate Video Thumbnails
-        function generateThumbnails() {
-            const videoGrid = document.getElementById("video-grid");
-            videoGrid.innerHTML = videos.map(video => `
-                <div class="video-thumbnail" onclick="playVideo('${video.file}')">
-                    <img src="placeholder.jpg" data-src="${video.thumbnail}" alt="${video.title}" class="lazy-load">
-                    <p>${video.title}</p>
-                </div>
-            `).join("");
-        }
-
-        // Play Selected Video
-        function playVideo(file) {
-            currentIndex = videos.findIndex(video => video.file === file);
-            updateVideo();
-        }
-
-        // Update Video Player
         function updateVideo() {
-            const videoPlayer = document.getElementById("video-player");
-            const videoSource = document.getElementById("video-source");
-            const videoTitle = document.getElementById("video-title");
-            const downloadLink = document.getElementById("download-link");
+            let videoPlayer = document.getElementById("video-player");
+            let videoSource = document.getElementById("video-source");
+            let videoTitle = document.getElementById("video-title");
+            let downloadLink = document.getElementById("download-link");
 
-            videoSource.src = videos[currentIndex].file;
-            videoPlayer.load();
-            videoTitle.textContent = "Now Playing: " + videos[currentIndex].title;
-            downloadLink.href = videos[currentIndex].file;
-            videoPlayer.play();
+            videoSource.src = videos[currentIndex];
+            videoPlayer.load();  // Reload the video player with the new source
+            videoTitle.textContent = "Now Playing: " + videos[currentIndex];
+            downloadLink.href = videos[currentIndex];  // Update download link
+            videoPlayer.play();  // Automatically play the video
         }
 
-        // Change Video
         function changeVideo(direction) {
             currentIndex += direction;
-            if (currentIndex < 0) currentIndex = videos.length - 1;
-            if (currentIndex >= videos.length) currentIndex = 0;
+            if (currentIndex < 0) {
+                currentIndex = videos.length - 1;  // Loop to last video
+            } else if (currentIndex >= videos.length) {
+                currentIndex = 0;  // Loop to first video
+            }
             updateVideo();
         }
 
-        // Filter Videos
-        function filterVideos() {
-            const searchTerm = document.getElementById("search-bar").value.toLowerCase();
-            const filteredVideos = videos.filter(video => video.title.toLowerCase().includes(searchTerm));
-            const videoGrid = document.getElementById("video-grid");
-            videoGrid.innerHTML = filteredVideos.map(video => `
-                <div class="video-thumbnail" onclick="playVideo('${video.file}')">
-                    <img src="${video.thumbnail}" alt="${video.title}">
-                    <p>${video.title}</p>
-                </div>
-            `).join("");
-        }
+        // Initialize video title on page load
+        document.addEventListener("DOMContentLoaded", updateVideo);
 
-        // Lazy Load Images
-        document.addEventListener("DOMContentLoaded", () => {
-            generateThumbnails();
-            updateVideo();
-
-            const lazyImages = document.querySelectorAll(".lazy-load");
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const img = entry.target;
-                        img.src = img.dataset.src;
-                        observer.unobserve(img);
-                    }
-                });
-            });
-
-            lazyImages.forEach(img => observer.observe(img));
-        });
-
-        // Theme Toggle
-        const themeToggle = document.getElementById("theme-toggle");
-        themeToggle.addEventListener("click", () => {
-            document.body.classList.toggle("dark-theme");
-            themeToggle.textContent = document.body.classList.contains("dark-theme") ? "Toggle Light Mode" : "Toggle Dark Mode";
+        // Add event listener for when the video ends
+        document.getElementById("video-player").addEventListener("ended", () => {
+            changeVideo(1);  // Play the next video when the current one ends
         });
     </script>
 </body>
