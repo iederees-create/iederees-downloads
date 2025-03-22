@@ -1,26 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Download Menu</title>
+    <title>Theme Showcase</title>
     <style>
-        /* Kids Theme Styles */
+        /* Base Styles */
         body {
-            font-family: 'Comic Sans MS', cursive, sans-serif; /* Fun, kid-friendly font */
+            font-family: 'Arial', sans-serif;
             margin: 0;
             padding: 0;
-            background-color: #fff9c4; /* Light yellow background */
-            color: #e91e63; /* Pink text */
-            line-height: 1.6;
+            transition: background-color 0.5s, color 0.5s;
         }
 
         h1 {
-            color: #ffffff; /* White text */
             text-align: center;
             padding: 20px 0;
-            background-color: #00bcd4; /* Cyan background */
             margin: 0;
-            font-size: 48px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            transition: background-color 0.5s, color 0.5s;
         }
 
         .page-link {
@@ -29,20 +24,12 @@
             width: 90%;
             max-width: 800px;
             padding: 15px;
-            background-color: #ffffff; /* White background for links */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
+            border-radius: 5px;
             text-align: center;
             text-decoration: none;
             font-size: 40px;
             line-height: 1;
-            color: #00bcd4; /* Cyan text */
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .page-link:hover {
-            transform: scale(1.05); /* Slightly enlarge on hover */
-            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.5s, color 0.5s, box-shadow 0.5s;
         }
 
         .donate, .advert {
@@ -50,10 +37,8 @@
             width: 90%;
             max-width: 800px;
             padding: 20px;
-            background-color: #ffffff; /* White background for sections */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            border-radius: 10px;
-            color: #e91e63; /* Pink text */
+            border-radius: 8px;
+            transition: background-color 0.5s, border-color 0.5s, color 0.5s;
         }
 
         .advert img {
@@ -68,13 +53,12 @@
             height: 60px;
             bottom: 40px;
             right: 40px;
-            background-color: #25D366; /* WhatsApp green */
-            color: #FFF;
             border-radius: 50px;
             text-align: center;
             font-size: 30px;
             box-shadow: 2px 2px 3px #999;
             z-index: 100;
+            transition: background-color 0.5s;
         }
 
         a.floating-whatsapp img {
@@ -82,16 +66,71 @@
             margin-top: 5px;
         }
 
-        a {
-            color: #00bcd4; /* Cyan accent for links */
+        /* Theme Styles */
+        .theme-1 { /* Light Theme */
+            background-color: #f0f8f0;
+            color: #333;
+        }
+        .theme-1 h1 {
+            background-color: #e0eee0;
+            color: #006400;
+        }
+        .theme-1 .page-link {
+            background-color: white;
+            color: #006400;
+        }
+        .theme-1 .page-link:hover {
+            background-color: #e8f5e9;
+        }
+        .theme-1 .donate, .theme-1 .advert {
+            background-color: #f8fff8;
+            border-color: #c8e6c9;
         }
 
-        a:hover {
-            text-decoration: underline;
+        .theme-2 { /* Dark Theme */
+            background-color: #1a1a1a;
+            color: #f0f0f0;
         }
+        .theme-2 h1 {
+            background-color: #333;
+            color: #f0f0f0;
+        }
+        .theme-2 .page-link {
+            background-color: #444;
+            color: #f0f0f0;
+        }
+        .theme-2 .page-link:hover {
+            background-color: #555;
+        }
+        .theme-2 .donate, .theme-2 .advert {
+            background-color: #444;
+            border-color: #555;
+        }
+
+        .theme-3 { /* High-Contrast Theme */
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .theme-3 h1 {
+            background-color: #000000;
+            color: #ffffff;
+        }
+        .theme-3 .page-link {
+            background-color: #ffffff;
+            color: #000000;
+        }
+        .theme-3 .page-link:hover {
+            background-color: #cccccc;
+        }
+        .theme-3 .donate, .theme-3 .advert {
+            background-color: #ffffff;
+            border-color: #000000;
+        }
+
+        /* Add more themes here... */
     </style>
 </head>
-<body>
+<body class="theme-1">
     <h1>Download Menu</h1>
 
     <a href="New uploads feed/index.html" class="page-link">New uploads feed</a>
@@ -115,5 +154,28 @@
     <a href="https://wa.me/27686197361?text=" class="floating-whatsapp">
         <img src="images/whatsapp.png" alt="WhatsApp Chat">
     </a>
+
+    <script>
+        // Array of theme classes
+        const themes = [
+            'theme-1', // Light Theme
+            'theme-2', // Dark Theme
+            'theme-3', // High-Contrast Theme
+            // Add more themes here...
+        ];
+
+        let currentThemeIndex = 0;
+
+        // Function to switch themes
+        function switchTheme() {
+            const body = document.body;
+            body.classList.remove(themes[currentThemeIndex]); // Remove current theme
+            currentThemeIndex = (currentThemeIndex + 1) % themes.length; // Move to next theme
+            body.classList.add(themes[currentThemeIndex]); // Apply new theme
+        }
+
+        // Automatically switch themes every 5 seconds
+        setInterval(switchTheme, 5000);
+    </script>
 </body>
 </html>
