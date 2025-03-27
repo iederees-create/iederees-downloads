@@ -247,47 +247,38 @@
         <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
     </a>
 
-    <script>
-        // Video playlist
-        const videos = [
-            "https://github.com/iederees-create/iederees-downloads/blob/4d25b673dabe1ebc36845efb535b1a170ba1738b/GAZA%20UPDATES/part_1.mp4",
-            "Part_2.mp4",
-            "Part_3.mp4",
-            "Part_4.mp4"
-        ];
+   <script>
+    const videos = [
+        "videos/part_1.mp4", // Updated path
+        "videos/part_2.mp4",
+        "videos/part_3.mp4",
+        "videos/part_4.mp4"
+    ];
 
-        let currentIndex = 0;
+    let currentIndex = 0;
 
-        function updateVideo() {
-            const videoPlayer = document.getElementById("video-player");
-            const videoSource = document.getElementById("video-source");
-            const videoTitle = document.getElementById("video-title");
-            const downloadLink = document.getElementById("download-link");
-
-            // Extract filename without path
-            const filename = videos[currentIndex].split('/').pop();
-            
-            videoSource.src = videos[currentIndex];
-            videoPlayer.load();
-            videoTitle.textContent = `Now Playing: ${filename}`;
-            downloadLink.href = videos[currentIndex];
-            videoPlayer.play().catch(e => console.log("Autoplay prevented:", e));
-        }
-
-        function changeVideo(direction) {
-            currentIndex = (currentIndex + direction + videos.length) % videos.length;
-            updateVideo();
-        }
-
-        // Initialize
-        document.addEventListener("DOMContentLoaded", () => {
-            updateVideo();
-            
-            // Auto-play next video when current ends
-            document.getElementById("video-player").addEventListener("ended", () => {
-                changeVideo(1);
-            });
+    function updateVideo() {
+        const videoPlayer = document.getElementById("video-player");
+        const videoSource = document.getElementById("video-source");
+        videoSource.src = videos[currentIndex];
+        videoPlayer.load();
+        videoPlayer.muted = true; // Required for autoplay
+        videoPlayer.play().catch(e => {
+            console.log("Autoplay blocked. User must interact first.");
+            videoPlayer.controls = true; // Show controls if autoplay fails
         });
-    </script>
+    }
+
+    function changeVideo(direction) {
+        currentIndex = (currentIndex + direction + videos.length) % videos.length;
+        updateVideo();
+    }
+
+    // Initialize
+    document.addEventListener("DOMContentLoaded", () => {
+        updateVideo();
+        videoPlayer.addEventListener("ended", () => changeVideo(1));
+    });
+</script>
 </body>
 </html>
