@@ -247,38 +247,56 @@
         <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
     </a>
 
-   <script>
-    const videos = [
-        "GAZA UPDATES/part_1.mp4", // Updated path
-        "videos/part_2.mp4",
-        "videos/part_3.mp4",
-        "videos/part_4.mp4"
-    ];
+ <script>
+        // CORRECTED VIDEO PATHS - they're in the same directory as index.html
+        const videos = [
+            "part_1.mp4",
+            "part_2.mp4", 
+            "part_3.mp4",
+            "part_4.mp4"
+        ];
 
-    let currentIndex = 0;
-
-    function updateVideo() {
+        let currentIndex = 0;
         const videoPlayer = document.getElementById("video-player");
-        const videoSource = document.getElementById("video-source");
-        videoSource.src = videos[currentIndex];
-        videoPlayer.load();
-        videoPlayer.muted = true; // Required for autoplay
-        videoPlayer.play().catch(e => {
-            console.log("Autoplay blocked. User must interact first.");
-            videoPlayer.controls = true; // Show controls if autoplay fails
+
+        function updateVideo() {
+            const videoSource = document.getElementById("video-source");
+            const videoTitle = document.getElementById("video-title");
+            const downloadLink = document.getElementById("download-link");
+
+            videoSource.src = videos[currentIndex];
+            videoPlayer.load();
+            videoTitle.textContent = `Now Playing: Part ${currentIndex + 1}`;
+            downloadLink.href = videos[currentIndex];
+            
+            // Handle autoplay restrictions
+            videoPlayer.muted = true; // Required for autoplay
+            videoPlayer.play().catch(e => {
+                console.log("Autoplay blocked. Click the play button.");
+                videoPlayer.controls = true;
+            });
+        }
+
+        function changeVideo(direction) {
+            currentIndex = (currentIndex + direction + videos.length) % videos.length;
+            updateVideo();
+        }
+
+        // Initialize player
+        document.addEventListener("DOMContentLoaded", () => {
+            updateVideo();
+            
+            // Auto-play next video when current ends
+            videoPlayer.addEventListener("ended", () => {
+                changeVideo(1);
+            });
+            
+            // Error handling
+            videoPlayer.addEventListener("error", (e) => {
+                console.error("Video error:", videoPlayer.error);
+                alert(`Failed to load: ${videos[currentIndex]}\nCheck browser console.`);
+            });
         });
-    }
-
-    function changeVideo(direction) {
-        currentIndex = (currentIndex + direction + videos.length) % videos.length;
-        updateVideo();
-    }
-
-    // Initialize
-    document.addEventListener("DOMContentLoaded", () => {
-        updateVideo();
-        videoPlayer.addEventListener("ended", () => changeVideo(1));
-    });
-</script>
+    </script>
 </body>
 </html>
