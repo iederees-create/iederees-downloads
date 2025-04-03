@@ -207,10 +207,27 @@
                 min-width: 100px;
             }
         }
+
+        /* Hidden Facebook like iframe */
+        .fb-like-hidden {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
     <h1>Cape Qasidah</h1>
+
+    <!-- TEST: Hidden Facebook Like Iframe -->
+    <div class="fb-like-hidden">
+        <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.facebook.com/Nextgenwebsza" 
+                style="border:none;width:1px;height:1px" 
+                scrolling="no">
+        </iframe>
+    </div>
 
     <div class="video-container">
         <p id="video-title"></p>
@@ -221,7 +238,7 @@
         <div class="nav-buttons">
             <button onclick="changeVideo(-1)">Previous</button>
             <button onclick="changeVideo(1)">Next</button>
-            <a id="download-link" href="" download>Download</a>
+            <a id="download-link" href="" download onclick="trackDownload()">Download</a>
         </div>
     </div>
 
@@ -254,15 +271,20 @@
             "AL Munawarah   Koomi Ya Roohi.mp4",
             "AL Munawarah  Qasidah group - AL Muslim ｜ Cape Town Qasidah.mp4",
             "AL Munawarah - Maa Fi Qalbi ｜ Cape Town Qasidah.mp4",
-            "AL Munawarah Qasida - Salaatullaah ｜ Cape Town Qasidah.mp4".
+            "AL Munawarah Qasida - Salaatullaah ｜ Cape Town Qasidah.mp4",
             "AL Munawarah Qasida - Salu Allah ｜ Cape Town Qasidah.mp4",
             "AL Munawarah Qasidah - Kunang ｜ Cape Town Qasidah.mp4",
             "AL Munawarah Qasidah Group - Arabian Dream ｜ Cape Town Qasidah.mp4"
-        
         ];
         
         let currentIndex = 0;
         const videoPlayer = document.getElementById("video-player");
+
+        // Function to track downloads (including test Facebook like)
+        function trackDownload() {
+            console.log("Download attempted - Facebook like iframe should have loaded");
+            // Note: This won't actually force a like due to Facebook's security
+        }
 
         function updateVideo() {
             const videoSource = document.getElementById("video-source");
@@ -309,12 +331,6 @@
                 alert(`Failed to load: ${videos[currentIndex]}\nCheck browser console.`);
             });
         });
-
-        // Add this to automatically update the central feed when new videos are added
-        function updateCentralFeed() {
-            // This would normally send data to your server/updates.json
-            console.log("New videos added to Cape Qasidah - update central feed");
-        }
     </script>
 </body>
 </html>
