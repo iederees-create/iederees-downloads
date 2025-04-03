@@ -32,6 +32,11 @@
         }
 
         /* ===== Feed Items ===== */
+        .feed-container {
+            flex: 1;
+            padding: 1.5rem 0;
+        }
+
         .feed-item {
             background-color: #121212;
             border: 1px solid #006400;
@@ -52,7 +57,7 @@
             background: #000;
         }
 
-        .feed-item a {
+        .download-btn {
             display: inline-block;
             background-color: #006400;
             color: white;
@@ -64,9 +69,15 @@
             transition: all 0.3s;
         }
 
-        .feed-item a:hover {
+        .download-btn:hover {
             background-color: #008000;
             transform: translateY(-2px);
+        }
+
+        .upload-info {
+            margin-top: 1rem;
+            color: #aaa;
+            font-size: 0.9rem;
         }
 
         /* ===== Content Sections ===== */
@@ -175,49 +186,40 @@
                 padding: 1rem;
             }
         }
+
+        /* Loading Animation */
+        .loader {
+            display: none;
+            text-align: center;
+            padding: 1rem;
+        }
+        .loader.active {
+            display: block;
+        }
+        .spinner {
+            border: 4px solid rgba(0, 100, 0, 0.3);
+            border-radius: 50%;
+            border-top: 4px solid #006400;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body>
     <h1>New Uploads Feed</h1>
 
-    <div class="feed-item">
-        <video controls>
-            <source src="AlLahbab dune bashing 2.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <a href="AlLahbab dune bashing 2.mp4" download>Download</a>
-    </div>
-
-    <div class="feed-item">
-        <video controls>
-            <source src="AlLahbab dune bashing.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <a href="AlLahbab dune bashing.mp4" download>Download</a>
-    </div>
-
-    <div class="feed-item">
-        <video controls>
-            <source src="Nasheed in Praise of Fatima al Zahra.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <a href="Nasheed in Praise of Fatima al Zahra.mp4" download>Download</a>
-    </div>
-
-    <div class="feed-item">
-        <video controls>
-            <source src="Nasheed Praising Lady Fatima al Zahra (RA).mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <a href="Nasheed Praising Lady Fatima al Zahra (RA).mp4" download>Download</a>
-    </div>
-
-    <div class="feed-item">
-        <video controls>
-            <source src="Tijaniyya - Tijani Zikr.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <a href="Tijaniyya - Tijani Zikr.mp4" download>Download</a>
+    <div class="feed-container" id="feed-container">
+        <!-- Feed items will be loaded here dynamically -->
+        <div class="loader active" id="loader">
+            <div class="spinner"></div>
+            <p>Loading new uploads...</p>
+        </div>
     </div>
 
     <div class="donate">
@@ -241,5 +243,110 @@
     <a href="https://wa.me/27686197361?text=" class="floating-whatsapp" aria-label="Chat on WhatsApp">
         <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
     </a>
+
+    <script>
+        // Auto-updating feed system
+        const feedContainer = document.getElementById('feed-container');
+        const loader = document.getElementById('loader');
+        
+        // List of all available videos (would normally come from a server/database)
+        const allVideos = [
+            { 
+                title: "AlLahbab dune bashing 2",
+                filename: "AlLahbab dune bashing 2.mp4",
+                date: "June 15, 2023",
+                description: "New footage from AlLahbab desert"
+            },
+            { 
+                title: "AlLahbab dune bashing",
+                filename: "AlLahbab dune bashing.mp4",
+                date: "June 14, 2023",
+                description: "Desert adventure footage"
+            },
+            { 
+                title: "Nasheed in Praise of Fatima al Zahra",
+                filename: "Nasheed in Praise of Fatima al Zahra.mp4",
+                date: "June 13, 2023",
+                description: "Beautiful nasheed performance"
+            },
+            { 
+                title: "Nasheed Praising Lady Fatima al Zahra (RA)",
+                filename: "Nasheed Praising Lady Fatima al Zahra (RA).mp4",
+                date: "June 12, 2023",
+                description: "Spiritual nasheed recording"
+            },
+            { 
+                title: "Tijaniyya - Tijani Zikr",
+                filename: "Tijaniyya - Tijani Zikr.mp4",
+                date: "June 11, 2023",
+                description: "Tijaniyya dhikr session"
+            }
+        ];
+
+        // Function to display videos
+        function displayVideos(videos) {
+            loader.classList.remove('active');
+            feedContainer.innerHTML = '';
+            
+            videos.forEach(video => {
+                const feedItem = document.createElement('div');
+                feedItem.className = 'feed-item';
+                feedItem.innerHTML = `
+                    <h3>${video.title}</h3>
+                    <p>${video.description}</p>
+                    <video controls>
+                        <source src="${video.filename}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <a href="${video.filename}" download class="download-btn">Download</a>
+                    <div class="upload-info">Uploaded: ${video.date}</div>
+                `;
+                feedContainer.appendChild(feedItem);
+            });
+        }
+
+        // Function to check for new uploads
+        function checkForUpdates() {
+            // In a real implementation, this would fetch from a server
+            // For this example, we'll use localStorage to simulate updates
+            
+            const lastUpdate = localStorage.getItem('lastUpdateCheck') || 0;
+            const now = Date.now();
+            
+            // Check for updates every 5 minutes (300000 ms)
+            if (now - lastUpdate > 300000) {
+                localStorage.setItem('lastUpdateCheck', now);
+                
+                // Simulate loading new content
+                setTimeout(() => {
+                    displayVideos(allVideos);
+                }, 1000);
+            } else {
+                // Display existing content
+                displayVideos(allVideos);
+            }
+        }
+
+        // Initialize the page
+        document.addEventListener('DOMContentLoaded', () => {
+            checkForUpdates();
+            
+            // Check for updates periodically
+            setInterval(checkForUpdates, 300000); // 5 minutes
+        });
+
+        // Error handling
+        window.addEventListener('error', (e) => {
+            loader.classList.remove('active');
+            feedContainer.innerHTML = `
+                <div class="feed-item">
+                    <h3>Error Loading Content</h3>
+                    <p>Failed to load updates. Please check your internet connection and try again.</p>
+                    <button onclick="checkForUpdates()" class="download-btn">Retry</button>
+                </div>
+            `;
+            console.error('Error:', e.message);
+        });
+    </script>
 </body>
 </html>
