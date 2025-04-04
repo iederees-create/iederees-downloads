@@ -5,297 +5,49 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ratib al Haddad - Iederees Francis</title>
     <style>
-        /* ===== Base Styles ===== */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-            color: #fff;
-            line-height: 1.6;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-        }
-
-        h1 {
-            background-color: #006400;
-            color: #fff;
-            padding: 1.5rem;
+        /* Social Media Styles */
+        .social-container {
             text-align: center;
-            font-size: clamp(1.5rem, 4vw, 2rem);
-            margin: 0;
+            margin-top: 20px;
         }
-
-        /* ===== Video Section ===== */
-        .video-container {
-            background-color: #121212;
-            border: 1px solid #006400;
-            border-radius: 8px;
-            margin: 2rem auto;
-            padding: 1.5rem;
-            width: 90%;
-            max-width: 950px;
-            box-shadow: 0 4px 12px rgba(0, 100, 0, 0.3);
-        }
-
-        #video-title {
-            font-weight: bold;
-            margin-bottom: 1rem;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            color: #4CAF50;
-        }
-
-        video {
-            width: 100%;
-            max-width: 780px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            background: #000;
-        }
-
-        /* ===== Navigation Buttons ===== */
-        .nav-buttons {
+        .social-icons {
             display: flex;
             justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1.5rem;
+            gap: 15px;
         }
-
-        .nav-buttons button, 
-        .nav-buttons a {
-            background-color: #006400;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-            flex: 1 1 auto;
-            min-width: 120px;
-            text-align: center;
-        }
-
-        .nav-buttons button:hover, 
-        .nav-buttons a:hover {
-            background-color: #008000;
-            transform: translateY(-2px);
-        }
-
-        /* ===== Content Sections ===== */
-        .donate, .advert {
-            background-color: #121212;
-            border: 1px solid #006400;
-            border-radius: 8px;
-            margin: 1.5rem auto;
-            padding: 1.5rem;
-            width: 90%;
-            max-width: 720px;
-        }
-
-        .donate h2, .advert h2 {
-            color: #4CAF50;
-            font-size: clamp(1.3rem, 3vw, 1.8rem);
-            margin-bottom: 1rem;
-        }
-
-        .donate p, .advert p {
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            margin-bottom: 1rem;
-        }
-
-        .advert img {
-            width: 50px;
-            height: auto;
-            display: block;
-            margin: 1rem auto;
-            transition: transform 0.3s;
-        }
-
-        .advert img:hover {
-            transform: scale(1.1);
-        }
-
-        /* ===== Footer & Back Button ===== */
-        .footer {
-            margin-top: auto;
-            padding: 1.5rem;
-            text-align: center;
-        }
-
-        .back-to-home {
+        .social-icons a {
             display: inline-block;
-            background-color: #006400;
-            color: white;
-            padding: 0.8rem 1.5rem;
-            text-decoration: none;
-            border-radius: 5px;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            transition: all 0.3s;
+            width: 50px;
+            height: 50px;
         }
-
-        .back-to-home:hover {
-            background-color: #008000;
-            transform: translateY(-2px);
-        }
-
-        /* ===== WhatsApp Button ===== */
-        .floating-whatsapp {
-            position: fixed;
-            width: 64px;
-            height: 64px;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: #006400;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-            transition: all 0.3s;
-        }
-
-        .floating-whatsapp:hover {
-            background-color: #008000;
-            transform: scale(1.1);
-        }
-
-        .floating-whatsapp img {
-            width: 40px;
-            height: 40px;
-        }
-
-        /* ===== Responsive Adjustments ===== */
-        @media (max-width: 768px) {
-            .video-container, 
-            .donate, 
-            .advert {
-                width: 95%;
-                padding: 1rem;
-            }
-            
-            .nav-buttons {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-            
-            .floating-whatsapp {
-                width: 56px;
-                height: 56px;
-                bottom: 1.5rem;
-                right: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                padding: 1rem;
-            }
-            
-            .nav-buttons button, 
-            .nav-buttons a {
-                padding: 0.7rem 1rem;
-                min-width: 100px;
-            }
+        .social-icons img {
+            width: 100%;
+            height: auto;
         }
     </style>
 </head>
 <body>
     <h1>Ratib al Haddad</h1>
 
-    <div class="video-container">
-        <p id="video-title"></p>
-        <video id="video-player" controls>
-            <source id="video-source" src="Ratib al Haddad 01 - Cape Town.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="nav-buttons">
-            <button onclick="changeVideo(-1)">Previous</button>
-            <button onclick="changeVideo(1)">Next</button>
-            <a id="download-link" href="Ratib al Haddad 01 - Cape Town.mp4" download>Download</a>
+    <!-- Social Media Section -->
+    <div class="social-container">
+        <h2>Follow & Share</h2>
+        <div class="social-icons">
+            <a href="https://www.facebook.com/61570654401266" target="_blank">
+                <img src="facebook-icon.png" alt="Facebook">
+            </a>
+            <a href="https://www.tiktok.com/@nextgenwebs" target="_blank">
+                <img src="tiktok-icon.png" alt="TikTok">
+            </a>
+            <a href="https://www.facebook.com/Nextgenwebsza/" target="_blank">
+                <img src="facebook-icon.png" alt="Facebook Page">
+            </a>
         </div>
+        <!-- Social Share Buttons -->
+        <p>Share this with your friends:</p>
+        <a href="https://www.facebook.com/sharer/sharer.php?u=https://yourwebsite.com" target="_blank">Share on Facebook</a>
+        <a href="https://www.tiktok.com/share?url=https://yourwebsite.com" target="_blank">Share on TikTok</a>
     </div>
 
-    <div class="donate">
-        <h2>Donation Information</h2>
-        <p>If you appreciate my work, please consider making a donation to keep this website up and running.</p>
-        <p><strong>Account Name:</strong> Iederees Francis</p>
-        <p><strong>Account Number:</strong> 2118861508 (Nedbank Savings)</p>
-    </div>
-
-    <div class="advert">
-        <p>If you like this website and want me to create a website for your business, contact me on WhatsApp by clicking the WhatsApp icon.</p>
-        <a href="https://wa.me/27686197361" target="_blank" aria-label="Contact on WhatsApp">
-            <img src="../images/whatsapp.png" alt="WhatsApp Icon">
-        </a>
-    </div>
-
-    <div class="footer">
-        <a href="../index.html" class="back-to-home">Back to Home</a>
-    </div>
-
-    <a href="https://wa.me/27686197361?text=" class="floating-whatsapp" aria-label="Chat on WhatsApp">
-        <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
-    </a>
-
-    <script>
-        const videos = [
-            "Ratib al Haddad 01 - Cape Town.mp4",
-            "Ratib al Haddad 02 - Cape Town.mp4",
-            "Ratib al Haddad 03 - Cape Town.mp4",
-            "Ratib al Haddad 04 - Cape Town.mp4"
-        ];
-        
-        let currentIndex = 0;
-        const videoPlayer = document.getElementById("video-player");
-
-        function updateVideo() {
-            const videoSource = document.getElementById("video-source");
-            const videoTitle = document.getElementById("video-title");
-            const downloadLink = document.getElementById("download-link");
-
-            videoSource.src = videos[currentIndex];
-            videoPlayer.load();
-            videoTitle.textContent = `Now Playing: Ratib al Haddad ${currentIndex + 1}`;
-            downloadLink.href = videos[currentIndex];
-            
-            // Handle autoplay restrictions
-            videoPlayer.muted = true; // Required for autoplay
-            videoPlayer.play().catch(e => {
-                console.log("Autoplay blocked. Click the play button.");
-                videoPlayer.controls = true;
-            });
-        }
-
-        function changeVideo(direction) {
-            currentIndex = (currentIndex + direction + videos.length) % videos.length;
-            updateVideo();
-        }
-
-        // Initialize player
-        document.addEventListener("DOMContentLoaded", () => {
-            updateVideo();
-            
-            // Auto-play next video when current ends
-            videoPlayer.addEventListener("ended", () => {
-                changeVideo(1);
-            });
-            
-            // Error handling
-            videoPlayer.addEventListener("error", (e) => {
-                console.error("Video error:", videoPlayer.error);
-                alert(`Failed to load: ${videos[currentIndex]}\nCheck browser console.`);
-            });
-        });
-    </script>
 </body>
 </html>
