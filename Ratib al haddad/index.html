@@ -31,80 +31,264 @@
             margin: 0;
         }
 
-        /* ===== Social Media Section ===== */
-        .social-media {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem auto;
+        /* ===== Social Media Bar ===== */
+        .social-media-bar {
+            background-color: #1e1e1e;
             padding: 1rem;
+            text-align: center;
+            border-bottom: 1px solid #006400;
+        }
+
+        .social-media-bar a {
+            display: inline-block;
+            margin: 0 1rem;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.5rem; /* Adjust icon size */
+            opacity: 0.8;
+            transition: opacity 0.3s;
+        }
+
+        .social-media-bar a:hover {
+            opacity: 1;
+        }
+
+        /* Example social media icons (replace with actual icons or font icons) */
+        .social-icon {
+            width: 24px;
+            height: 24px;
+            vertical-align: middle;
+            margin-right: 0.3rem;
+        }
+
+        /* ===== Video Section ===== */
+        .video-container {
             background-color: #121212;
             border: 1px solid #006400;
             border-radius: 8px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            width: 90%;
+            max-width: 950px;
+            box-shadow: 0 4px 12px rgba(0, 100, 0, 0.3);
+        }
+
+        #video-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #4CAF50;
+        }
+
+        video {
+            width: 100%;
+            max-width: 780px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            background: #000;
+        }
+
+        /* ===== Navigation Buttons ===== */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .nav-buttons button,
+        .nav-buttons a {
+            background-color: #006400;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            flex: 1 1 auto;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .nav-buttons button:hover,
+        .nav-buttons a:hover {
+            background-color: #008000;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Share Buttons ===== */
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .share-button {
+            background-color: #3b5998; /* Facebook color */
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            transition: background-color 0.3s;
+        }
+
+        .share-button.facebook { background-color: #3b5998; }
+        .share-button.tiktok { background-color: #000; } /* TikTok color is black */
+
+        .share-button:hover {
+            opacity: 0.8;
+        }
+
+        /* ===== Content Sections ===== */
+        .donate, .advert {
+            background-color: #121212;
+            border: 1px solid #006400;
+            border-radius: 8px;
+            margin: 1.5rem auto;
+            padding: 1.5rem;
             width: 90%;
             max-width: 720px;
         }
 
-        .social-media a {
+        .donate h2, .advert h2 {
+            color: #4CAF50;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            margin-bottom: 1rem;
+        }
+
+        .donate p, .advert p {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            margin-bottom: 1rem;
+        }
+
+        .advert img {
+            width: 50px;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
+            transition: transform 0.3s;
+        }
+
+        .advert img:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===== Footer & Back Button ===== */
+        .footer {
+            margin-top: auto;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .back-to-home {
             display: inline-block;
-            width: 40px;
-            height: 40px;
+            background-color: #006400;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            transition: all 0.3s;
+        }
+
+        .back-to-home:hover {
+            background-color: #008000;
+            transform: translateY(-2px);
+        }
+
+        /* ===== WhatsApp Button ===== */
+        .floating-whatsapp {
+            position: fixed;
+            width: 64px;
+            height: 64px;
+            bottom: 2rem;
+            right: 2rem;
             background-color: #006400;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
-            text-decoration: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 100;
             transition: all 0.3s;
         }
 
-        .social-media a:hover {
+        .floating-whatsapp:hover {
+            background-color: #008000;
             transform: scale(1.1);
-            background-color: #008000;
         }
 
-        .social-media img {
-            width: 24px;
-            height: 24px;
+        .floating-whatsapp img {
+            width: 40px;
+            height: 40px;
         }
 
-        /* ===== Share Buttons Section ===== */
-        .share-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin: 1.5rem auto;
-            padding: 1rem;
-            background-color: #121212;
-            border: 1px solid #006400;
-            border-radius: 8px;
-            width: 90%;
-            max-width: 720px;
+        /* ===== Responsive Adjustments ===== */
+        @media (max-width: 768px) {
+            .video-container,
+            .donate,
+            .advert {
+                width: 95%;
+                padding: 1rem;
+            }
+
+            .nav-buttons {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+
+            .floating-whatsapp {
+                width: 56px;
+                height: 56px;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
         }
 
-        .share-buttons button {
-            background-color: #006400;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s;
-        }
+        @media (max-width: 480px) {
+            h1 {
+                padding: 1rem;
+            }
 
-        .share-buttons button:hover {
-            background-color: #008000;
-            transform: translateY(-2px);
-        }
+            .nav-buttons button,
+            .nav-buttons a {
+                padding: 0.7rem 1rem;
+                min-width: 100px;
+            }
 
-        /* Rest of your styles remain unchanged... */
+            .social-media-bar a {
+                margin: 0 0.5rem;
+                font-size: 1.2rem;
+            }
+
+            .share-buttons {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+        }
     </style>
 </head>
 <body>
     <h1>Ratib al Haddad</h1>
 
-    <!-- Video Section -->
+    <div class="social-media-bar">
+        <a href="https://www.facebook.com/Nextgenwebsza/" target="_blank" aria-label="Follow us on Facebook">
+            <img src="facebook_icon.png" alt="Facebook Icon" class="social-icon"> Facebook
+        </a>
+        <a href="https://www.tiktok.com/@nextgenwebs" target="_blank" aria-label="Follow us on TikTok">
+            <img src="tiktok_icon.png" alt="TikTok Icon" class="social-icon"> TikTok
+        </a>
+    </div>
+
     <div class="video-container">
         <p id="video-title"></p>
         <video id="video-player" controls>
@@ -116,29 +300,17 @@
             <button onclick="changeVideo(1)">Next</button>
             <a id="download-link" href="Ratib al Haddad 01 - Cape Town.mp4" download>Download</a>
         </div>
+
+        <div class="share-buttons">
+            <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_PAGE_URL" target="_blank" class="share-button facebook">
+                Share on Facebook
+            </a>
+            <a href="https://www.tiktok.com/upload?video_url=YOUR_VIDEO_URL&title=Check out this video!" target="_blank" class="share-button tiktok">
+                Share on TikTok
+            </a>
+            </div>
     </div>
 
-    <!-- Social Media Section -->
-    <div class="social-media">
-        <a href="https://www.facebook.com/61570654401266" target="_blank" aria-label="Facebook">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png" alt="Facebook Icon">
-        </a>
-        <a href="https://www.tiktok.com/@nextgenwebs" target="_blank" aria-label="TikTok">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/TikTok_logo.svg/2048px-TikTok_logo.svg.png" alt="TikTok Icon">
-        </a>
-        <a href="https://www.facebook.com/Nextgenwebsza/" target="_blank" aria-label="Facebook Page">
-            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b8/2021_Facebook_icon.svg/2048px-2021_Facebook_icon.svg.png" alt="Facebook Page Icon">
-        </a>
-    </div>
-
-    <!-- Share Buttons Section -->
-    <div class="share-buttons">
-        <button onclick="shareOnFacebook()">Share on Facebook</button>
-        <button onclick="shareOnTwitter()">Share on Twitter</button>
-        <button onclick="shareOnWhatsApp()">Share on WhatsApp</button>
-    </div>
-
-    <!-- Donation Section -->
     <div class="donate">
         <h2>Donation Information</h2>
         <p>If you appreciate my work, please consider making a donation to keep this website up and running.</p>
@@ -146,7 +318,6 @@
         <p><strong>Account Number:</strong> 2118861508 (Nedbank Savings)</p>
     </div>
 
-    <!-- Advertisement Section -->
     <div class="advert">
         <p>If you like this website and want me to create a website for your business, contact me on WhatsApp by clicking the WhatsApp icon.</p>
         <a href="https://wa.me/27686197361" target="_blank" aria-label="Contact on WhatsApp">
@@ -154,36 +325,71 @@
         </a>
     </div>
 
-    <!-- Footer -->
     <div class="footer">
         <a href="../index.html" class="back-to-home">Back to Home</a>
     </div>
 
-    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/27686197361?text=" class="floating-whatsapp" aria-label="Chat on WhatsApp">
         <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
     </a>
 
     <script>
-        // Existing video player logic...
+        const videos = [
+            "Ratib al Haddad 01 - Cape Town.mp4",
+            "Ratib al Haddad 02 - Cape Town.mp4",
+            "Ratib al Haddad 03 - Cape Town.mp4",
+            "Ratib al Haddad 04 - Cape Town.mp4"
+        ];
 
-        // Social Sharing Functions
-        function shareOnFacebook() {
-            const url = encodeURIComponent(window.location.href);
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        let currentIndex = 0;
+        const videoPlayer = document.getElementById("video-player");
+        const facebookShareButton = document.querySelector(".share-button.facebook");
+        const tiktokShareButton = document.querySelector(".share-button.tiktok");
+
+        function updateVideo() {
+            const videoSource = document.getElementById("video-source");
+            const videoTitle = document.getElementById("video-title");
+            const downloadLink = document.getElementById("download-link");
+
+            videoSource.src = videos[currentIndex];
+            videoPlayer.load();
+            videoTitle.textContent = `Now Playing: Ratib al Haddad ${currentIndex + 1}`;
+            downloadLink.href = videos[currentIndex];
+
+            // Update share button URLs
+            const currentPageUrl = window.location.href;
+            facebookShareButton.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentPageUrl)}`;
+            tiktokShareButton.href = `https://www.tiktok.com/upload?video_url=${encodeURIComponent(window.location.origin + '/' + videos[currentIndex])}&title=${encodeURIComponent('Check out this Ratib al Haddad video!')}`;
+
+
+            // Handle autoplay restrictions
+            videoPlayer.muted = true; // Required for autoplay
+            videoPlayer.play().catch(e => {
+                console.log("Autoplay blocked. Click the play button.");
+                videoPlayer.controls = true;
+            });
         }
 
-        function shareOnTwitter() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent("Check out this amazing content!");
-            window.open(`https://twitter.com/intent/tweet?url=${url}&text=${text}`, '_blank');
+        function changeVideo(direction) {
+            currentIndex = (currentIndex + direction + videos.length) % videos.length;
+            updateVideo();
         }
 
-        function shareOnWhatsApp() {
-            const url = encodeURIComponent(window.location.href);
-            const text = encodeURIComponent("Check out this amazing content!");
-            window.open(`https://wa.me/?text=${text} ${url}`, '_blank');
-        }
+        // Initialize player
+        document.addEventListener("DOMContentLoaded", () => {
+            updateVideo();
+
+            // Auto-play next video when current ends
+            videoPlayer.addEventListener("ended", () => {
+                changeVideo(1);
+            });
+
+            // Error handling
+            videoPlayer.addEventListener("error", (e) => {
+                console.error("Video error:", videoPlayer.error);
+                alert(`Failed to load: ${videos[currentIndex]}\nCheck browser console.`);
+            });
+        });
     </script>
 </body>
 </html>
