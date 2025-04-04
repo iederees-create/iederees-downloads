@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gaza Updates</title>
+    
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Gaza Updates - Latest News and Information">
+    <meta property="og:description" content="Stay updated with the latest videos and information about Gaza.">
+    <meta property="og:image" content="https://example.com/images/gaza-updates-preview.jpg">
+    <meta property="og:url" content="https://example.com/gaza-updates">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* ===== Base Styles ===== */
         * {
@@ -43,55 +54,8 @@
             box-shadow: 0 4px 12px rgba(0, 100, 0, 0.3);
         }
 
-        #video-title {
-            font-weight: bold;
-            margin-bottom: 1rem;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            color: #4CAF50;
-        }
-
-        video {
-            width: 100%;
-            max-width: 780px;
-            height: auto;
-            display: block;
-            margin: 0 auto;
-            background: #000;
-        }
-
-        /* ===== Navigation Buttons ===== */
-        .nav-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .nav-buttons button, 
-        .nav-buttons a {
-            background-color: #006400;
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            font-size: clamp(1rem, 3vw, 1.2rem);
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-            flex: 1 1 auto;
-            min-width: 120px;
-            text-align: center;
-        }
-
-        .nav-buttons button:hover, 
-        .nav-buttons a:hover {
-            background-color: #008000;
-            transform: translateY(-2px);
-        }
-
-        /* ===== Content Sections ===== */
-        .donate, .advert {
+        /* ===== NextGen Webs Promotion Box ===== */
+        .nextgen-promo {
             background-color: #121212;
             border: 1px solid #006400;
             border-radius: 8px;
@@ -99,39 +63,52 @@
             padding: 1.5rem;
             width: 90%;
             max-width: 720px;
+            text-align: center;
         }
 
-        .donate h2, .advert h2 {
+        .nextgen-promo h2 {
             color: #4CAF50;
             font-size: clamp(1.3rem, 3vw, 1.8rem);
             margin-bottom: 1rem;
         }
 
-        .donate p, .advert p {
+        .nextgen-promo p {
             font-size: clamp(0.9rem, 2vw, 1rem);
+            margin-bottom: 1.5rem;
+        }
+
+        .nextgen-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4CAF50;
             margin-bottom: 1rem;
         }
 
-        .advert img {
-            width: 50px;
-            height: auto;
-            display: block;
-            margin: 1rem auto;
-            transition: transform 0.3s;
+        .promo-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
         }
 
-        .advert img:hover {
-            transform: scale(1.1);
+        .promo-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s;
         }
 
-        /* ===== Footer & Back Button ===== */
-        .footer {
-            margin-top: auto;
-            padding: 1.5rem;
-            text-align: center;
+        .promo-social a:hover {
+            transform: translateY(-3px) scale(1.1);
         }
 
-        .back-to-home {
+        .promo-btn {
             display: inline-block;
             background-color: #006400;
             color: white;
@@ -139,164 +116,60 @@
             text-decoration: none;
             border-radius: 5px;
             font-size: clamp(0.9rem, 2vw, 1rem);
+            margin: 0.5rem;
             transition: all 0.3s;
         }
 
-        .back-to-home:hover {
+        .promo-btn:hover {
             background-color: #008000;
             transform: translateY(-2px);
         }
 
-        /* ===== WhatsApp Button ===== */
-        .floating-whatsapp {
-            position: fixed;
-            width: 64px;
-            height: 64px;
-            bottom: 2rem;
-            right: 2rem;
-            background-color: #006400;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-            z-index: 100;
-            transition: all 0.3s;
-        }
-
-        .floating-whatsapp:hover {
-            background-color: #008000;
-            transform: scale(1.1);
-        }
-
-        .floating-whatsapp img {
-            width: 40px;
-            height: 40px;
-        }
-
-        /* ===== Responsive Adjustments ===== */
-        @media (max-width: 768px) {
-            .video-container, 
-            .donate, 
-            .advert {
-                width: 95%;
-                padding: 1rem;
-            }
-            
-            .nav-buttons {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-            
-            .floating-whatsapp {
-                width: 56px;
-                height: 56px;
-                bottom: 1.5rem;
-                right: 1.5rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            h1 {
-                padding: 1rem;
-            }
-            
-            .nav-buttons button, 
-            .nav-buttons a {
-                padding: 0.7rem 1rem;
-                min-width: 100px;
-            }
-        }
+        /* ===== Rest of your existing styles... ===== */
+        /* (Keep all your existing styles for video player, navigation buttons, etc.) */
     </style>
 </head>
 <body>
-    <h1>Gaza Updates</h1>
+    <!-- Your existing header and video content... -->
 
-    <div class="video-container">
-        <p id="video-title"></p>
-        <video id="video-player" controls>
-            <source id="video-source" src="CapeTown dhikr 01.wmv.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-        <div class="nav-buttons">
-            <button onclick="changeVideo(-1)">Previous</button>
-            <button onclick="changeVideo(1)">Next</button>
-            <a id="download-link" href="CapeTown dhikr 01.wmv.mp4" download>Download</a>
+    <!-- NextGen Webs Promotion Box -->
+    <div class="nextgen-promo">
+        <div class="nextgen-logo">NextGen Webs</div>
+        <h2>Need a Professional Website?</h2>
+        <p>I specialize in creating affordable, high-quality websites for small businesses and individuals. Let me bring your business online with:</p>
+        <ul style="text-align: left; max-width: 500px; margin: 0 auto 1.5rem; padding-left: 1.5rem;">
+            <li>Modern, mobile-friendly designs</li>
+            <li>Fast loading speeds</li>
+            <li>SEO optimization</li>
+            <li>Social media integration</li>
+            <li>Easy content management</li>
+        </ul>
+        
+        <div class="promo-social">
+            <a href="https://www.facebook.com/Nextgenwebsza/" style="background-color: #3b5998;" target="_blank">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.tiktok.com/@nextgenwebs" style="background-color: #000000;" target="_blank">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://wa.me/27686197361" style="background-color: #25D366;" target="_blank">
+                <i class="fab fa-whatsapp"></i>
+            </a>
         </div>
-    </div>
-
-    <div class="donate">
-        <h2>Donation Information</h2>
-        <p>If you appreciate my work, please consider making a donation to keep this website up and running.</p>
-        <p><strong>Account Name:</strong> Iederees Francis</p>
-        <p><strong>Account Number:</strong> 2118861508 (Nedbank Savings)</p>
-    </div>
-
-    <div class="advert">
-        <p>If you like this website and want me to create a website for your business, contact me on WhatsApp by clicking the WhatsApp icon.</p>
-        <a href="https://wa.me/27686197361" target="_blank" aria-label="Contact on WhatsApp">
-            <img src="../images/whatsapp.png" alt="WhatsApp Icon">
+        
+        <p>Check out my work and contact me directly:</p>
+        <a href="https://wa.me/27686197361" class="promo-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+        <a href="https://www.facebook.com/Nextgenwebsza/" class="promo-btn" style="background-color: #3b5998;" target="_blank">
+            <i class="fab fa-facebook-f"></i> Visit Facebook Page
         </a>
     </div>
 
-    <div class="footer">
-        <a href="../index.html" class="back-to-home">Back to Home</a>
-    </div>
+    <!-- Your existing donate section and footer... -->
 
-    <a href="https://wa.me/27686197361?text=" class="floating-whatsapp" aria-label="Chat on WhatsApp">
-        <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
-    </a>
-
- <script>
-        // CORRECTED VIDEO PATHS - they're in the same directory as index.html
-        const videos = [
-            "part_1.mp4",
-            "part_2.mp4", 
-            "part_3.mp4",
-            "part_4.mp4"
-        ];
-
-        let currentIndex = 0;
-        const videoPlayer = document.getElementById("video-player");
-
-        function updateVideo() {
-            const videoSource = document.getElementById("video-source");
-            const videoTitle = document.getElementById("video-title");
-            const downloadLink = document.getElementById("download-link");
-
-            videoSource.src = videos[currentIndex];
-            videoPlayer.load();
-            videoTitle.textContent = `Now Playing: Part ${currentIndex + 1}`;
-            downloadLink.href = videos[currentIndex];
-            
-            // Handle autoplay restrictions
-            videoPlayer.muted = true; // Required for autoplay
-            videoPlayer.play().catch(e => {
-                console.log("Autoplay blocked. Click the play button.");
-                videoPlayer.controls = true;
-            });
-        }
-
-        function changeVideo(direction) {
-            currentIndex = (currentIndex + direction + videos.length) % videos.length;
-            updateVideo();
-        }
-
-        // Initialize player
-        document.addEventListener("DOMContentLoaded", () => {
-            updateVideo();
-            
-            // Auto-play next video when current ends
-            videoPlayer.addEventListener("ended", () => {
-                changeVideo(1);
-            });
-            
-            // Error handling
-            videoPlayer.addEventListener("error", (e) => {
-                console.error("Video error:", videoPlayer.error);
-                alert(`Failed to load: ${videos[currentIndex]}\nCheck browser console.`);
-            });
-        });
+    <script>
+        // Your existing JavaScript...
     </script>
 </body>
 </html>
