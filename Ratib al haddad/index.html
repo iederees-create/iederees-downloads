@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ratib al Haddad - Iederees Francis</title>
+    
+    <!-- Social Media Meta Tags for Better Sharing -->
+    <meta property="og:title" content="Ratib al Haddad - Islamic Content">
+    <meta property="og:description" content="Watch and download Ratib al Haddad videos. Support our Islamic content.">
+    <meta property="og:image" content="https://example.com/images/ratib-preview.jpg">
+    <meta property="og:url" content="https://example.com/ratib-al-haddad">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* ===== Base Styles ===== */
         * {
@@ -29,36 +40,6 @@
             text-align: center;
             font-size: clamp(1.5rem, 4vw, 2rem);
             margin: 0;
-        }
-
-        /* ===== Social Media Bar ===== */
-        .social-media-bar {
-            background-color: #1e1e1e;
-            padding: 1rem;
-            text-align: center;
-            border-bottom: 1px solid #006400;
-        }
-
-        .social-media-bar a {
-            display: inline-block;
-            margin: 0 1rem;
-            color: #fff;
-            text-decoration: none;
-            font-size: 1.5rem; /* Adjust icon size */
-            opacity: 0.8;
-            transition: opacity 0.3s;
-        }
-
-        .social-media-bar a:hover {
-            opacity: 1;
-        }
-
-        /* Example social media icons (replace with actual icons or font icons) */
-        .social-icon {
-            width: 24px;
-            height: 24px;
-            vertical-align: middle;
-            margin-right: 0.3rem;
         }
 
         /* ===== Video Section ===== */
@@ -98,7 +79,7 @@
             margin-top: 1.5rem;
         }
 
-        .nav-buttons button,
+        .nav-buttons button, 
         .nav-buttons a {
             background-color: #006400;
             color: white;
@@ -114,41 +95,14 @@
             text-align: center;
         }
 
-        .nav-buttons button:hover,
+        .nav-buttons button:hover, 
         .nav-buttons a:hover {
             background-color: #008000;
             transform: translateY(-2px);
         }
 
-        /* ===== Share Buttons ===== */
-        .share-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-
-        .share-button {
-            background-color: #3b5998; /* Facebook color */
-            color: white;
-            border: none;
-            padding: 0.8rem 1.5rem;
-            border-radius: 5px;
-            cursor: pointer;
-            text-decoration: none;
-            font-size: clamp(0.9rem, 2vw, 1rem);
-            transition: background-color 0.3s;
-        }
-
-        .share-button.facebook { background-color: #3b5998; }
-        .share-button.tiktok { background-color: #000; } /* TikTok color is black */
-
-        .share-button:hover {
-            opacity: 0.8;
-        }
-
         /* ===== Content Sections ===== */
-        .donate, .advert {
+        .donate, .advert, .social-section {
             background-color: #121212;
             border: 1px solid #006400;
             border-radius: 8px;
@@ -158,15 +112,17 @@
             max-width: 720px;
         }
 
-        .donate h2, .advert h2 {
+        .donate h2, .advert h2, .social-section h2 {
             color: #4CAF50;
             font-size: clamp(1.3rem, 3vw, 1.8rem);
             margin-bottom: 1rem;
+            text-align: center;
         }
 
-        .donate p, .advert p {
+        .donate p, .advert p, .social-section p {
             font-size: clamp(0.9rem, 2vw, 1rem);
             margin-bottom: 1rem;
+            text-align: center;
         }
 
         .advert img {
@@ -179,6 +135,87 @@
 
         .advert img:hover {
             transform: scale(1.1);
+        }
+
+        /* ===== Social Media Styles ===== */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .facebook { background-color: #3b5998; }
+        .tiktok { background-color: #000000; }
+        .facebook:hover { background-color: #2d4373; }
+        .tiktok:hover { background-color: #333333; }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .share-btn i {
+            margin-right: 8px;
+        }
+
+        .share-fb { background-color: #3b5998; }
+        .share-wa { background-color: #25D366; }
+        .share-twitter { background-color: #1DA1F2; }
+        .share-fb:hover { background-color: #2d4373; }
+        .share-wa:hover { background-color: #128C7E; }
+        .share-twitter:hover { background-color: #0d8ecf; }
+
+        /* ===== Follow Widget ===== */
+        .follow-widget {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: #121212;
+            border: 1px solid #006400;
+            border-radius: 8px;
+            margin: 1rem auto;
+            max-width: 300px;
+        }
+
+        .follow-text {
+            margin-bottom: 1rem;
+            font-weight: bold;
+            color: #4CAF50;
         }
 
         /* ===== Footer & Back Button ===== */
@@ -233,23 +270,34 @@
 
         /* ===== Responsive Adjustments ===== */
         @media (max-width: 768px) {
-            .video-container,
-            .donate,
-            .advert {
+            .video-container, 
+            .donate, 
+            .advert,
+            .social-section {
                 width: 95%;
                 padding: 1rem;
             }
-
+            
             .nav-buttons {
                 flex-direction: column;
                 gap: 0.8rem;
             }
-
+            
             .floating-whatsapp {
                 width: 56px;
                 height: 56px;
                 bottom: 1.5rem;
                 right: 1.5rem;
+            }
+            
+            .social-buttons {
+                gap: 0.8rem;
+            }
+            
+            .social-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
             }
         }
 
@@ -257,37 +305,22 @@
             h1 {
                 padding: 1rem;
             }
-
-            .nav-buttons button,
+            
+            .nav-buttons button, 
             .nav-buttons a {
                 padding: 0.7rem 1rem;
                 min-width: 100px;
             }
-
-            .social-media-bar a {
-                margin: 0 0.5rem;
-                font-size: 1.2rem;
-            }
-
-            .share-buttons {
-                flex-direction: column;
-                align-items: center;
-                gap: 0.5rem;
+            
+            .share-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
             }
         }
     </style>
 </head>
 <body>
     <h1>Ratib al Haddad</h1>
-
-    <div class="social-media-bar">
-        <a href="https://www.facebook.com/Nextgenwebsza/" target="_blank" aria-label="Follow us on Facebook">
-            <img src="facebook_icon.png" alt="Facebook Icon" class="social-icon"> Facebook
-        </a>
-        <a href="https://www.tiktok.com/@nextgenwebs" target="_blank" aria-label="Follow us on TikTok">
-            <img src="tiktok_icon.png" alt="TikTok Icon" class="social-icon"> TikTok
-        </a>
-    </div>
 
     <div class="video-container">
         <p id="video-title"></p>
@@ -300,15 +333,59 @@
             <button onclick="changeVideo(1)">Next</button>
             <a id="download-link" href="Ratib al Haddad 01 - Cape Town.mp4" download>Download</a>
         </div>
+    </div>
 
-        <div class="share-buttons">
-            <a href="https://www.facebook.com/sharer/sharer.php?u=YOUR_PAGE_URL" target="_blank" class="share-button facebook">
-                Share on Facebook
+    <!-- Social Media Follow Section -->
+    <div class="social-section">
+        <h2>Follow Us</h2>
+        <p>Stay connected with us on social media for more content and updates</p>
+        
+        <div class="social-buttons">
+            <a href="https://www.facebook.com/61570654401266" class="social-btn facebook" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="https://www.tiktok.com/upload?video_url=YOUR_VIDEO_URL&title=Check out this video!" target="_blank" class="share-button tiktok">
-                Share on TikTok
+            <a href="https://www.tiktok.com/@nextgenwebs" class="social-btn tiktok" target="_blank" aria-label="TikTok">
+                <i class="fab fa-tiktok"></i>
             </a>
+            <a href="https://www.facebook.com/Nextgenwebsza/" class="social-btn facebook" target="_blank" aria-label="Facebook Page">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+        </div>
+        
+        <div class="follow-widget">
+            <div class="follow-text">Follow us on Facebook</div>
+            <div class="fb-page" 
+                 data-href="https://www.facebook.com/Nextgenwebsza/" 
+                 data-tabs="timeline" 
+                 data-width="300" 
+                 data-height="150" 
+                 data-small-header="true" 
+                 data-adapt-container-width="true" 
+                 data-hide-cover="false" 
+                 data-show-facepile="true">
+                <blockquote cite="https://www.facebook.com/Nextgenwebsza/" class="fb-xfbml-parse-ignore">
+                    <a href="https://www.facebook.com/Nextgenwebsza/">NextGen Webs</a>
+                </blockquote>
             </div>
+        </div>
+    </div>
+
+    <!-- Share Buttons -->
+    <div class="social-section">
+        <h2>Share This Content</h2>
+        <p>Help spread this content by sharing with your friends and family</p>
+        
+        <div class="share-buttons">
+            <a href="#" class="share-btn share-fb" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="#" class="share-btn share-wa" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" class="share-btn share-twitter" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+        </div>
     </div>
 
     <div class="donate">
@@ -333,6 +410,10 @@
         <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
     </a>
 
+    <!-- Facebook SDK for Like Button and Widget -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="YOUR_NONCE_VALUE"></script>
+
     <script>
         const videos = [
             "Ratib al Haddad 01 - Cape Town.mp4",
@@ -340,11 +421,9 @@
             "Ratib al Haddad 03 - Cape Town.mp4",
             "Ratib al Haddad 04 - Cape Town.mp4"
         ];
-
+        
         let currentIndex = 0;
         const videoPlayer = document.getElementById("video-player");
-        const facebookShareButton = document.querySelector(".share-button.facebook");
-        const tiktokShareButton = document.querySelector(".share-button.tiktok");
 
         function updateVideo() {
             const videoSource = document.getElementById("video-source");
@@ -355,13 +434,7 @@
             videoPlayer.load();
             videoTitle.textContent = `Now Playing: Ratib al Haddad ${currentIndex + 1}`;
             downloadLink.href = videos[currentIndex];
-
-            // Update share button URLs
-            const currentPageUrl = window.location.href;
-            facebookShareButton.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(currentPageUrl)}`;
-            tiktokShareButton.href = `https://www.tiktok.com/upload?video_url=${encodeURIComponent(window.location.origin + '/' + videos[currentIndex])}&title=${encodeURIComponent('Check out this Ratib al Haddad video!')}`;
-
-
+            
             // Handle autoplay restrictions
             videoPlayer.muted = true; // Required for autoplay
             videoPlayer.play().catch(e => {
@@ -375,20 +448,48 @@
             updateVideo();
         }
 
+        // Share functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+        }
+
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent("Check out this Ratib al Haddad content: ");
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://wa.me/?text=${text}${url}`, '_blank');
+        }
+
+        function shareOnTwitter() {
+            const text = encodeURIComponent("Ratib al Haddad - Islamic Content: ");
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
+
         // Initialize player
         document.addEventListener("DOMContentLoaded", () => {
             updateVideo();
-
+            
             // Auto-play next video when current ends
             videoPlayer.addEventListener("ended", () => {
                 changeVideo(1);
             });
-
+            
             // Error handling
             videoPlayer.addEventListener("error", (e) => {
                 console.error("Video error:", videoPlayer.error);
                 alert(`Failed to load: ${videos[currentIndex]}\nCheck browser console.`);
             });
+            
+            // Initialize Facebook SDK
+            window.fbAsyncInit = function() {
+                FB.init({
+                    appId            : 'YOUR_APP_ID',
+                    autoLogAppEvents : true,
+                    xfbml            : true,
+                    version          : 'v18.0'
+                });
+            };
         });
     </script>
 </body>
