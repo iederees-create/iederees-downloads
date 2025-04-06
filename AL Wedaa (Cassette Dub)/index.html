@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>AL Wedaa (Cassette Dub) - Iederees Francis</title>
+    <title>AL Wedaa (Cassette Dub Videos) - Iederees Francis</title>
     
-    <!-- Social Media Meta Tags for Better Sharing -->
-    <meta property="og:title" content="AL Wedaa (Cassette Dub) - Islamic Content">
-    <meta property="og:description" content="Listen to the beautiful AL Wedaa cassette dub recordings. Download and share with your community.">
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="AL Wedaa (Cassette Dub Videos) - Islamic Content">
+    <meta property="og:description" content="Watch the beautiful AL Wedaa cassette dub videos. Download and share with your community.">
     <meta property="og:image" content="https://example.com/images/al-wedaa-preview.jpg">
-    <meta property="og:url" content="https://example.com/al-wedaa">
+    <meta property="og:url" content="https://example.com/al-wedaa-videos">
     <meta name="twitter:card" content="summary_large_image">
     
-    <!-- Font Awesome for Social Icons -->
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
@@ -42,7 +42,7 @@
             margin: 0;
         }
 
-        /* ===== Audio Section ===== */
+        /* ===== Video Section ===== */
         .video-container {
             background-color: #121212;
             border: 1px solid #006400;
@@ -61,11 +61,13 @@
             color: #4CAF50;
         }
 
-        audio {
+        video {
             width: 100%;
             max-width: 780px;
+            height: auto;
             display: block;
             margin: 0 auto;
+            background: #000;
         }
 
         /* ===== Navigation Buttons ===== */
@@ -186,36 +188,6 @@
         }
 
         /* ===== Social Media Styles ===== */
-        .social-buttons {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin: 1.5rem 0;
-        }
-
-        .social-btn {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            color: white;
-            font-size: 1.5rem;
-            text-decoration: none;
-            transition: all 0.3s;
-        }
-
-        .social-btn:hover {
-            transform: translateY(-5px) scale(1.1);
-        }
-
-        .facebook { background-color: #3b5998; }
-        .tiktok { background-color: #000000; }
-        .facebook:hover { background-color: #2d4373; }
-        .tiktok:hover { background-color: #333333; }
-
         .share-buttons {
             display: flex;
             justify-content: center;
@@ -246,25 +218,6 @@
         .share-fb:hover { background-color: #2d4373; }
         .share-wa:hover { background-color: #128C7E; }
         .share-twitter:hover { background-color: #0d8ecf; }
-
-        /* ===== Follow Widget ===== */
-        .follow-widget {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            padding: 1rem;
-            background-color: #121212;
-            border: 1px solid #006400;
-            border-radius: 8px;
-            margin: 1rem auto;
-            max-width: 300px;
-        }
-
-        .follow-text {
-            margin-bottom: 1rem;
-            font-weight: bold;
-            color: #4CAF50;
-        }
 
         /* ===== Footer & Back Button ===== */
         .footer {
@@ -339,15 +292,8 @@
                 right: 1.5rem;
             }
             
-            .social-buttons,
             .promo-social {
                 gap: 0.8rem;
-            }
-            
-            .social-btn {
-                width: 45px;
-                height: 45px;
-                font-size: 1.3rem;
             }
         }
 
@@ -375,22 +321,18 @@
     </style>
 </head>
 <body>
-    <h1>AL Wedaa (Cassette Dub)</h1>
-
-    <!-- Social Media Follow Section -->
-
-    </div>
+    <h1>AL Wedaa (Cassette Dub Videos)</h1>
 
     <div class="video-container">
         <p id="video-title"></p>
-        <audio id="video-player" controls>
-            <source id="video-source" src="al-wedaa-1.mp3" type="audio/mpeg">
-            Your browser does not support the audio element.
-        </audio>
+        <video id="media-player" controls>
+            <source id="media-source" src="" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
         <div class="nav-buttons">
             <button onclick="changeTrack(-1)">Previous</button>
             <button onclick="changeTrack(1)">Next</button>
-            <a id="download-link" href="al-wedaa-1.mp3" download>Download</a>
+            <a id="download-link" href="" download>Download</a>
             <button onclick="shareCurrentTrack()" style="background-color: #3b5998;">
                 <i class="fas fa-share-alt"></i> Share
             </button>
@@ -399,7 +341,7 @@
 
     <!-- Share Buttons -->
     <div class="social-section">
-        <h2>Share This Content</h2>
+        <h2>Share These Videos</h2>
         <p>Help spread these beautiful AL Wedaa recordings by sharing with your community</p>
         
         <div class="share-buttons">
@@ -465,12 +407,8 @@
         <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
     </a>
 
-    <!-- Facebook SDK for Like Button and Widget -->
-    <div id="fb-root"></div>
-    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="YOUR_NONCE_VALUE"></script>
-
     <script>
-        // AL Wedaa audio tracks
+        // AL Wedaa video tracks
         const tracks = [
             "AL Ambiyah ｜ Cape Town Qasidah.mp4",
             "AL FASALU.mp4", 
@@ -480,20 +418,22 @@
         ];
         
         let currentIndex = 0;
-        const audioPlayer = document.getElementById("video-player");
+        const mediaPlayer = document.getElementById("media-player");
 
         function updateTrack() {
-            const audioSource = document.getElementById("video-source");
-            const audioTitle = document.getElementById("video-title");
+            const mediaSource = document.getElementById("media-source");
+            const videoTitle = document.getElementById("video-title");
             const downloadLink = document.getElementById("download-link");
 
-            audioSource.src = tracks[currentIndex];
-            audioPlayer.load();
-            audioTitle.textContent = `Now Playing: Track ${currentIndex + 1}`;
+            mediaSource.src = tracks[currentIndex];
+            mediaSource.type = "video/mp4";
+            mediaPlayer.load();
+            videoTitle.textContent = `Now Playing: ${tracks[currentIndex].split('｜')[0].trim()}`;
             downloadLink.href = tracks[currentIndex];
             
             // Handle autoplay restrictions
-            audioPlayer.play().catch(e => {
+            mediaPlayer.muted = true;
+            mediaPlayer.play().catch(e => {
                 console.log("Autoplay blocked. Click the play button.");
             });
         }
@@ -503,26 +443,26 @@
             updateTrack();
         }
 
-        // Share functions
         function shareOnFacebook() {
             const url = encodeURIComponent(window.location.href);
-            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}`, '_blank');
+            const text = encodeURIComponent("Beautiful AL Wedaa Video: ");
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
         }
 
         function shareOnWhatsApp() {
-            const text = encodeURIComponent("Beautiful AL Wedaa Cassette Dub: ");
+            const text = encodeURIComponent("Watch this AL Wedaa video: ");
             const url = encodeURIComponent(window.location.href);
             window.open(`https://wa.me/?text=${text}${url}`, '_blank');
         }
 
         function shareOnTwitter() {
-            const text = encodeURIComponent("AL Wedaa Cassette Dub Recording: ");
+            const text = encodeURIComponent("AL Wedaa Video Recording: ");
             const url = encodeURIComponent(window.location.href);
             window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
         }
         
         function shareCurrentTrack() {
-            const text = encodeURIComponent(`AL Wedaa Cassette Dub - Track ${currentIndex + 1}: `);
+            const text = encodeURIComponent(`AL Wedaa Video - ${tracks[currentIndex].split('｜')[0].trim()}: `);
             const url = encodeURIComponent(window.location.href);
             window.open(`https://wa.me/?text=${text}${url}`, '_blank');
         }
@@ -531,26 +471,14 @@
         document.addEventListener("DOMContentLoaded", () => {
             updateTrack();
             
-            // Auto-play next track when current ends
-            audioPlayer.addEventListener("ended", () => {
+            mediaPlayer.addEventListener("ended", () => {
                 changeTrack(1);
             });
             
-            // Error handling
-            audioPlayer.addEventListener("error", (e) => {
-                console.error("Audio error:", audioPlayer.error);
+            mediaPlayer.addEventListener("error", (e) => {
+                console.error("Video error:", mediaPlayer.error);
                 alert(`Failed to load: ${tracks[currentIndex]}\nCheck browser console.`);
             });
-            
-            // Initialize Facebook SDK
-            window.fbAsyncInit = function() {
-                FB.init({
-                    appId            : 'YOUR_APP_ID',
-                    autoLogAppEvents : true,
-                    xfbml            : true,
-                    version          : 'v18.0'
-                });
-            };
         });
     </script>
 </body>
