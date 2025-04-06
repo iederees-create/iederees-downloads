@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cape Qasidah - Iederees Francis</title>
+    
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Cape Qasidah - Islamic Content">
+    <meta property="og:description" content="Watch and download Cape Qasidah performances by AL Munawarah">
+    <meta property="og:image" content="https://example.com/images/qasidah-preview.jpg">
+    <meta property="og:url" content="https://example.com/cape-qasidah">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* ===== Base Styles ===== */
         * {
@@ -91,7 +102,7 @@
         }
 
         /* ===== Content Sections ===== */
-        .donate, .advert {
+        .donate, .advert, .social-section {
             background-color: #121212;
             border: 1px solid #006400;
             border-radius: 8px;
@@ -101,15 +112,17 @@
             max-width: 720px;
         }
 
-        .donate h2, .advert h2 {
+        .donate h2, .advert h2, .social-section h2 {
             color: #4CAF50;
             font-size: clamp(1.3rem, 3vw, 1.8rem);
             margin-bottom: 1rem;
+            text-align: center;
         }
 
-        .donate p, .advert p {
+        .donate p, .advert p, .social-section p {
             font-size: clamp(0.9rem, 2vw, 1rem);
             margin-bottom: 1rem;
+            text-align: center;
         }
 
         .advert img {
@@ -123,6 +136,68 @@
         .advert img:hover {
             transform: scale(1.1);
         }
+
+        /* ===== Social Media Styles ===== */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .facebook { background-color: #3b5998; }
+        .tiktok { background-color: #000000; }
+        .facebook:hover { background-color: #2d4373; }
+        .tiktok:hover { background-color: #333333; }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .share-btn i {
+            margin-right: 8px;
+        }
+
+        .share-fb { background-color: #3b5998; }
+        .share-wa { background-color: #25D366; }
+        .share-twitter { background-color: #1DA1F2; }
+        .share-fb:hover { background-color: #2d4373; }
+        .share-wa:hover { background-color: #128C7E; }
+        .share-twitter:hover { background-color: #0d8ecf; }
 
         /* ===== Footer & Back Button ===== */
         .footer {
@@ -178,7 +253,8 @@
         @media (max-width: 768px) {
             .video-container, 
             .donate, 
-            .advert {
+            .advert,
+            .social-section {
                 width: 95%;
                 padding: 1rem;
             }
@@ -194,6 +270,10 @@
                 bottom: 1.5rem;
                 right: 1.5rem;
             }
+            
+            .social-buttons {
+                gap: 0.8rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -205,6 +285,11 @@
             .nav-buttons a {
                 padding: 0.7rem 1rem;
                 min-width: 100px;
+            }
+            
+            .share-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
             }
         }
 
@@ -221,13 +306,8 @@
 <body>
     <h1>Cape Qasidah</h1>
 
-    <!-- TEST: Hidden Facebook Like Iframe -->
-    <div class="fb-like-hidden">
-        <iframe src="https://www.facebook.com/plugins/like.php?href=https://www.facebook.com/Nextgenwebsza" 
-                style="border:none;width:1px;height:1px" 
-                scrolling="no">
-        </iframe>
-    </div>
+    <!-- Hidden Facebook Like Iframe -->
+    
 
     <div class="video-container">
         <p id="video-title"></p>
@@ -239,6 +319,24 @@
             <button onclick="changeVideo(-1)">Previous</button>
             <button onclick="changeVideo(1)">Next</button>
             <a id="download-link" href="" download onclick="trackDownload()">Download</a>
+        </div>
+    </div>
+
+    <!-- Share Buttons -->
+    <div class="social-section">
+        <h2>Share This Content</h2>
+        <p>Help spread these beautiful Qasidah performances by sharing with your friends</p>
+        
+        <div class="share-buttons">
+            <a href="#" class="share-btn share-fb" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="#" class="share-btn share-wa" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" class="share-btn share-twitter" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
         </div>
     </div>
 
@@ -265,7 +363,6 @@
     </a>
 
     <script>
-        // Add your video files here
         const videos = [
             "AL Munawarah -  Iya Ka ｜ Cape Town Qasidah.mp4",
             "AL Munawarah   Koomi Ya Roohi.mp4",
@@ -280,10 +377,8 @@
         let currentIndex = 0;
         const videoPlayer = document.getElementById("video-player");
 
-        // Function to track downloads (including test Facebook like)
         function trackDownload() {
             console.log("Download attempted - Facebook like iframe should have loaded");
-            // Note: This won't actually force a like due to Facebook's security
         }
 
         function updateVideo() {
@@ -291,17 +386,11 @@
             const videoTitle = document.getElementById("video-title");
             const downloadLink = document.getElementById("download-link");
 
-            if (videos.length === 0) {
-                videoTitle.textContent = "No videos available";
-                return;
-            }
-
             videoSource.src = videos[currentIndex];
             videoPlayer.load();
-            videoTitle.textContent = `Now Playing: Cape Qasidah ${currentIndex + 1}`;
+            videoTitle.textContent = `Now Playing: ${videos[currentIndex].split('｜')[0].trim()}`;
             downloadLink.href = videos[currentIndex];
             
-            // Handle autoplay restrictions
             videoPlayer.muted = true;
             videoPlayer.play().catch(e => {
                 console.log("Autoplay blocked. Click the play button.");
@@ -310,22 +399,37 @@
         }
 
         function changeVideo(direction) {
-            if (videos.length === 0) return;
-            
             currentIndex = (currentIndex + direction + videos.length) % videos.length;
             updateVideo();
+        }
+
+        // Share functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent("Check out this beautiful Cape Qasidah performance: ");
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+        }
+
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent("Check out this Cape Qasidah performance: ");
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://wa.me/?text=${text}${url}`, '_blank');
+        }
+
+        function shareOnTwitter() {
+            const text = encodeURIComponent("Beautiful Cape Qasidah performance: ");
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
         }
 
         // Initialize player
         document.addEventListener("DOMContentLoaded", () => {
             updateVideo();
             
-            // Auto-play next video when current ends
             videoPlayer.addEventListener("ended", () => {
                 changeVideo(1);
             });
             
-            // Error handling
             videoPlayer.addEventListener("error", (e) => {
                 console.error("Video error:", videoPlayer.error);
                 alert(`Failed to load: ${videos[currentIndex]}\nCheck browser console.`);
