@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ahbab al-Habib - Iederees Francis</title>
+    
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Ahbab al-Habib - Islamic Content">
+    <meta property="og:description" content="Watch and download Ahbab al-Habib videos. Support our Islamic content.">
+    <meta property="og:image" content="https://example.com/images/ahbab-preview.jpg">
+    <meta property="og:url" content="https://example.com/ahbab-al-habib">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
         /* ===== Base Styles ===== */
         * {
@@ -91,7 +102,7 @@
         }
 
         /* ===== Content Sections ===== */
-        .donate, .advert {
+        .donate, .advert, .social-section {
             background-color: #121212;
             border: 1px solid #006400;
             border-radius: 8px;
@@ -101,15 +112,17 @@
             max-width: 720px;
         }
 
-        .donate h2, .advert h2 {
+        .donate h2, .advert h2, .social-section h2 {
             color: #4CAF50;
             font-size: clamp(1.3rem, 3vw, 1.8rem);
             margin-bottom: 1rem;
+            text-align: center;
         }
 
-        .donate p, .advert p {
+        .donate p, .advert p, .social-section p {
             font-size: clamp(0.9rem, 2vw, 1rem);
             margin-bottom: 1rem;
+            text-align: center;
         }
 
         .advert img {
@@ -123,6 +136,38 @@
         .advert img:hover {
             transform: scale(1.1);
         }
+
+        /* ===== Social Media Styles ===== */
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .share-btn i {
+            margin-right: 8px;
+        }
+
+        .share-fb { background-color: #3b5998; }
+        .share-wa { background-color: #25D366; }
+        .share-twitter { background-color: #1DA1F2; }
+        .share-fb:hover { background-color: #2d4373; }
+        .share-wa:hover { background-color: #128C7E; }
+        .share-twitter:hover { background-color: #0d8ecf; }
 
         /* ===== Footer & Back Button ===== */
         .footer {
@@ -178,7 +223,8 @@
         @media (max-width: 768px) {
             .video-container, 
             .donate, 
-            .advert {
+            .advert,
+            .social-section {
                 width: 95%;
                 padding: 1rem;
             }
@@ -206,6 +252,11 @@
                 padding: 0.7rem 1rem;
                 min-width: 100px;
             }
+            
+            .share-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -215,13 +266,34 @@
     <div class="video-container">
         <p id="video-title"></p>
         <video id="video-player" controls>
-            <source id="video-source" src="Ahbab al-Habib 01.mp4" type="video/mp4">
+            <source id="video-source" src="" type="video/mp4">
             Your browser does not support the video tag.
         </video>
         <div class="nav-buttons">
             <button onclick="changeVideo(-1)">Previous</button>
             <button onclick="changeVideo(1)">Next</button>
-            <a id="download-link" href="Ahbab al-Habib 01.mp4" download>Download</a>
+            <a id="download-link" href="" download>Download</a>
+            <button onclick="shareCurrentVideo()" style="background-color: #3b5998;">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+        </div>
+    </div>
+
+    <!-- Share Buttons -->
+    <div class="social-section">
+        <h2>Share This Content</h2>
+        <p>Help spread these beautiful Ahbab al-Habib videos by sharing with friends and family</p>
+        
+        <div class="share-buttons">
+            <a href="#" class="share-btn share-fb" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="#" class="share-btn share-wa" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" class="share-btn share-twitter" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
         </div>
     </div>
 
@@ -268,11 +340,11 @@
 
             videoSource.src = videos[currentIndex];
             videoPlayer.load();
-            videoTitle.textContent = `Now Playing: ${videos[currentIndex]}`;
+            videoTitle.textContent = `Now Playing: ${videos[currentIndex].replace('.mp4', '')}`;
             downloadLink.href = videos[currentIndex];
             
             // Handle autoplay restrictions
-            videoPlayer.muted = true; // Required for autoplay
+            videoPlayer.muted = true;
             videoPlayer.play().catch(e => {
                 console.log("Autoplay blocked. Click the play button.");
                 videoPlayer.controls = true;
@@ -284,16 +356,39 @@
             updateVideo();
         }
 
+        // Share functions
+        function shareOnFacebook() {
+            const url = encodeURIComponent(window.location.href);
+            const text = encodeURIComponent("Beautiful Ahbab al-Habib video: ");
+            window.open(`https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${text}`, '_blank');
+        }
+
+        function shareOnWhatsApp() {
+            const text = encodeURIComponent("Watch this Ahbab al-Habib video: ");
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://wa.me/?text=${text}${url}`, '_blank');
+        }
+
+        function shareOnTwitter() {
+            const text = encodeURIComponent("Ahbab al-Habib Video: ");
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, '_blank');
+        }
+        
+        function shareCurrentVideo() {
+            const text = encodeURIComponent(`Ahbab al-Habib - ${videos[currentIndex].replace('.mp4', '')}: `);
+            const url = encodeURIComponent(window.location.href);
+            window.open(`https://wa.me/?text=${text}${url}`, '_blank');
+        }
+
         // Initialize player
         document.addEventListener("DOMContentLoaded", () => {
             updateVideo();
             
-            // Auto-play next video when current ends
             videoPlayer.addEventListener("ended", () => {
                 changeVideo(1);
             });
             
-            // Error handling
             videoPlayer.addEventListener("error", (e) => {
                 console.error("Video error:", videoPlayer.error);
                 alert(`Failed to load: ${videos[currentIndex]}\nCheck browser console.`);
