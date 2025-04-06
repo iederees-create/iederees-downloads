@@ -225,6 +225,24 @@
         </div>
     </div>
 
+     <!-- Share Buttons -->
+    <div class="social-section">
+        <h2>Share This Content</h2>
+        <p>Help spread this content by sharing with your friends and family</p>
+        
+        <div class="share-buttons">
+            <a href="#" class="share-btn share-fb" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="#" class="share-btn share-wa" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" class="share-btn share-twitter" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+        </div>
+    </div>
+
     <div class="donate">
         <h2>Donation Information</h2>
         <p>If you appreciate my work, please consider making a donation to keep this website up and running.</p>
@@ -246,6 +264,11 @@
     <a href="https://wa.me/27686197361?text=" class="floating-whatsapp" aria-label="Chat on WhatsApp">
         <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
     </a>
+
+    <!-- Facebook SDK for Like Button and Widget -->
+    <div id="fb-root"></div>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v18.0" nonce="YOUR_NONCE_VALUE"></script>
+
 
     <script>
         const videos = [
