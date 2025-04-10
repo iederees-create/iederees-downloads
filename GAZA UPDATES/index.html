@@ -1,12 +1,108 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- [Previous meta tags and styles remain the same] -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gaza Updates</title>
+    
+    <!-- Social Media Meta Tags for Better Sharing -->
+    <meta property="og:title" content="Gaza Updates - Latest News and Information">
+    <meta property="og:description" content="Stay updated with the latest videos and information about Gaza.">
+    <meta property="og:image" content="https://example.com/images/gaza-updates-preview.jpg">
+    <meta property="og:url" content="https://example.com/gaza-updates">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- Font Awesome for Social Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        /* Add these new styles to your existing stylesheet */
-        
-        /* Episode selector styles */
-        .episode-selector {
+        /* ===== Base Styles ===== */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            background-color: #006400;
+            color: #fff;
+            padding: 1.5rem;
+            text-align: center;
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin: 0;
+        }
+
+        /* ===== Video Section ===== */
+        .video-container {
+            background-color: #121212;
+            border: 1px solid #006400;
+            border-radius: 8px;
+            margin: 2rem auto;
+            padding: 1.5rem;
+            width: 90%;
+            max-width: 950px;
+            box-shadow: 0 4px 12px rgba(0, 100, 0, 0.3);
+        }
+
+        #video-title {
+            font-weight: bold;
+            margin-bottom: 1rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            color: #4CAF50;
+        }
+
+        video {
+            width: 100%;
+            max-width: 780px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+            background: #000;
+        }
+
+        /* ===== Navigation Buttons ===== */
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .nav-buttons button, 
+        .nav-buttons a {
+            background-color: #006400;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            flex: 1 1 auto;
+            min-width: 120px;
+            text-align: center;
+        }
+
+        .nav-buttons button:hover, 
+        .nav-buttons a:hover {
+            background-color: #008000;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Episode Navigation ===== */
+        .episode-nav {
             background-color: #121212;
             border: 1px solid #006400;
             border-radius: 8px;
@@ -14,16 +110,24 @@
             padding: 1rem;
             width: 90%;
             max-width: 950px;
+            text-align: center;
         }
-        
+
+        .episode-title {
+            color: #4CAF50;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
         .episode-tabs {
             display: flex;
-            overflow-x: auto;
+            justify-content: center;
+            flex-wrap: wrap;
             gap: 0.5rem;
             margin-bottom: 1rem;
-            padding-bottom: 0.5rem;
         }
-        
+
         .episode-tab {
             background-color: #003300;
             color: white;
@@ -31,69 +135,345 @@
             padding: 0.5rem 1rem;
             border-radius: 5px;
             cursor: pointer;
-            white-space: nowrap;
             transition: all 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
-        
+
         .episode-tab:hover {
             background-color: #004d00;
         }
-        
+
         .episode-tab.active {
             background-color: #006400;
             font-weight: bold;
         }
-        
-        .part-indicator {
-            text-align: center;
-            margin: 1rem 0;
-            font-size: 1.1rem;
-            color: #4CAF50;
-        }
-        
+
         .part-navigation {
             display: flex;
             justify-content: center;
+            flex-wrap: wrap;
             gap: 0.5rem;
             margin-top: 0.5rem;
         }
-        
+
         .part-btn {
             background-color: #003300;
             color: white;
             border: none;
-            padding: 0.3rem 0.6rem;
-            border-radius: 3px;
+            padding: 0.5rem 0.8rem;
+            border-radius: 5px;
             cursor: pointer;
             transition: all 0.3s;
+            font-size: clamp(0.9rem, 2vw, 1rem);
         }
-        
+
         .part-btn:hover {
             background-color: #004d00;
         }
-        
+
         .part-btn.active {
             background-color: #006400;
             font-weight: bold;
+        }
+
+        /* ===== Content Sections ===== */
+        .donate, .advert, .social-section, .nextgen-promo {
+            background-color: #121212;
+            border: 1px solid #006400;
+            border-radius: 8px;
+            margin: 1.5rem auto;
+            padding: 1.5rem;
+            width: 90%;
+            max-width: 720px;
+        }
+
+        .donate h2, .advert h2, .social-section h2, .nextgen-promo h2 {
+            color: #4CAF50;
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .donate p, .advert p, .social-section p, .nextgen-promo p {
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .advert img {
+            width: 50px;
+            height: auto;
+            display: block;
+            margin: 1rem auto;
+            transition: transform 0.3s;
+        }
+
+        .advert img:hover {
+            transform: scale(1.1);
+        }
+
+        /* ===== NextGen Webs Promotion Box ===== */
+        .nextgen-logo {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #4CAF50;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .promo-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .promo-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .promo-social a:hover {
+            transform: translateY(-3px) scale(1.1);
+        }
+
+        .promo-btn {
+            display: inline-block;
+            background-color: #006400;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            margin: 0.5rem;
+            transition: all 0.3s;
+        }
+
+        .promo-btn:hover {
+            background-color: #008000;
+            transform: translateY(-2px);
+        }
+
+        /* ===== Social Media Styles ===== */
+        .social-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin: 1.5rem 0;
+        }
+
+        .social-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            color: white;
+            font-size: 1.5rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+        }
+
+        .facebook { background-color: #3b5998; }
+        .tiktok { background-color: #000000; }
+        .facebook:hover { background-color: #2d4373; }
+        .tiktok:hover { background-color: #333333; }
+
+        .share-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .share-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            color: white;
+            font-size: 1rem;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .share-btn i {
+            margin-right: 8px;
+        }
+
+        .share-fb { background-color: #3b5998; }
+        .share-wa { background-color: #25D366; }
+        .share-twitter { background-color: #1DA1F2; }
+        .share-fb:hover { background-color: #2d4373; }
+        .share-wa:hover { background-color: #128C7E; }
+        .share-twitter:hover { background-color: #0d8ecf; }
+
+        /* ===== Follow Widget ===== */
+        .follow-widget {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 1rem;
+            background-color: #121212;
+            border: 1px solid #006400;
+            border-radius: 8px;
+            margin: 1rem auto;
+            max-width: 300px;
+        }
+
+        .follow-text {
+            margin-bottom: 1rem;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+
+        /* ===== Footer & Back Button ===== */
+        .footer {
+            margin-top: auto;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .back-to-home {
+            display: inline-block;
+            background-color: #006400;
+            color: white;
+            padding: 0.8rem 1.5rem;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: clamp(0.9rem, 2vw, 1rem);
+            transition: all 0.3s;
+        }
+
+        .back-to-home:hover {
+            background-color: #008000;
+            transform: translateY(-2px);
+        }
+
+        /* ===== WhatsApp Button ===== */
+        .floating-whatsapp {
+            position: fixed;
+            width: 64px;
+            height: 64px;
+            bottom: 2rem;
+            right: 2rem;
+            background-color: #006400;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            z-index: 100;
+            transition: all 0.3s;
+        }
+
+        .floating-whatsapp:hover {
+            background-color: #008000;
+            transform: scale(1.1);
+        }
+
+        .floating-whatsapp img {
+            width: 40px;
+            height: 40px;
+        }
+
+        /* ===== Responsive Adjustments ===== */
+        @media (max-width: 768px) {
+            .video-container, 
+            .donate, 
+            .advert,
+            .social-section,
+            .nextgen-promo,
+            .episode-nav {
+                width: 95%;
+                padding: 1rem;
+            }
+            
+            .nav-buttons {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+            
+            .floating-whatsapp {
+                width: 56px;
+                height: 56px;
+                bottom: 1.5rem;
+                right: 1.5rem;
+            }
+            
+            .social-buttons,
+            .promo-social {
+                gap: 0.8rem;
+            }
+            
+            .social-btn {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            h1 {
+                padding: 1rem;
+            }
+            
+            .nav-buttons button, 
+            .nav-buttons a {
+                padding: 0.7rem 1rem;
+                min-width: 100px;
+            }
+            
+            .share-btn,
+            .promo-btn {
+                padding: 0.5rem 0.8rem;
+                font-size: 0.9rem;
+            }
+            
+            .nextgen-logo {
+                font-size: 1.5rem;
+            }
+            
+            .episode-tab,
+            .part-btn {
+                padding: 0.4rem 0.7rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
 <body>
     <h1>Gaza Updates</h1>
 
-    <!-- Episode Selector -->
-    <div class="episode-selector">
+    <!-- Episode Navigation -->
+    <div class="episode-nav">
+        <div class="episode-title" id="current-episode-title">Episode 1: The Beginning</div>
         <div class="episode-tabs" id="episode-tabs">
             <!-- Episode tabs will be generated by JavaScript -->
         </div>
-        <div class="part-indicator" id="part-indicator">Episode 1, Part 1</div>
         <div class="part-navigation" id="part-navigation">
             <!-- Part navigation will be generated by JavaScript -->
         </div>
     </div>
 
     <div class="video-container">
-        <p id="video-title"></p>
+        <p id="video-title">Now Playing: Part 1</p>
         <video id="video-player" controls>
             <source id="video-source" src="" type="video/mp4">
             Your browser does not support the video tag.
@@ -108,7 +488,72 @@
         </div>
     </div>
 
-    <!-- [Rest of your existing content remains the same] -->
+    <!-- Share Buttons -->
+    <div class="social-section">
+        <h2>Share These Updates</h2>
+        <p>Help spread awareness by sharing these Gaza updates</p>
+        
+        <div class="share-buttons">
+            <a href="#" class="share-btn share-fb" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="#" class="share-btn share-wa" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" class="share-btn share-twitter" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+        </div>
+    </div>
+    
+    <div class="donate">
+        <h2>Donation Information</h2>
+        <p>If you appreciate my work, please consider making a donation to keep this website up and running.</p>
+        <p><strong>Account Name:</strong> Iederees Francis</p>
+        <p><strong>Account Number:</strong> 2118861508 (Nedbank Savings)</p>
+    </div>
+
+    <!-- NextGen Webs Promotion Box -->
+    <div class="nextgen-promo">
+        <div class="nextgen-logo">NextGen Webs</div>
+        <h2>Professional Website Development Services</h2>
+        <p>I specialize in creating affordable, high-quality websites for small businesses and individuals. Let me bring your business online with:</p>
+        <ul style="text-align: left; max-width: 500px; margin: 0 auto 1.5rem; padding-left: 1.5rem;">
+            <li>Modern, mobile-friendly designs</li>
+            <li>Fast loading speeds</li>
+            <li>SEO optimization</li>
+            <li>Social media integration</li>
+            <li>Easy content management</li>
+        </ul>
+        
+        <div class="promo-social">
+            <a href="https://www.facebook.com/Nextgenwebsza/" style="background-color: #3b5998;" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.tiktok.com/@nextgenwebs" style="background-color: #000000;" target="_blank" aria-label="TikTok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://wa.me/27686197361" style="background-color: #25D366;" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        
+        <p>Check out my work and contact me directly:</p>
+        <a href="https://wa.me/27686197361" class="promo-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+        <a href="https://www.facebook.com/Nextgenwebsza/" class="promo-btn" style="background-color: #3b5998;" target="_blank">
+            <i class="fab fa-facebook-f"></i> Visit Facebook Page
+        </a>
+    </div>
+
+    <div class="footer">
+        <a href="../index.html" class="back-to-home">Back to Home</a>
+    </div>
+
+    <a href="https://wa.me/27686197361?text=" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <img src="../images/whatsapp.png" alt="WhatsApp Chat Icon">
+    </a>
 
     <script>
         // Define your episodes and their parts
@@ -116,10 +561,10 @@
             {
                 title: "Episode 1: The Beginning",
                 parts: [
-                    "part1.mp4",
-                    "part2.mp4",
-                    "part3.mp4",
-                    "part4.mp4"
+                    "ep1_part1.mp4",
+                    "ep1_part2.mp4", 
+                    "ep1_part3.mp4",
+                    "ep1_part4.mp4"
                 ]
             },
             {
@@ -136,22 +581,16 @@
                     "ep3_part2.mp4",
                     "ep3_part3.mp4"
                 ]
-            },
-            {
-                title: "Episode 4: International Response",
-                parts: [
-                    "ep4_part1.mp4",
-                    "ep4_part2.mp4"
-                ]
             }
+            // Add more episodes as needed
         ];
         
         let currentEpisode = 0;
         let currentPart = 0;
         const videoPlayer = document.getElementById("video-player");
         const episodeTabsContainer = document.getElementById("episode-tabs");
-        const partIndicator = document.getElementById("part-indicator");
         const partNavigation = document.getElementById("part-navigation");
+        const currentEpisodeTitle = document.getElementById("current-episode-title");
 
         // Initialize the episode tabs
         function initEpisodeTabs() {
@@ -171,7 +610,7 @@
             episodes[currentEpisode].parts.forEach((_, index) => {
                 const btn = document.createElement('button');
                 btn.className = 'part-btn' + (index === currentPart ? ' active' : '');
-                btn.textContent = index + 1;
+                btn.textContent = `Part ${index + 1}`;
                 btn.onclick = () => switchPart(index);
                 partNavigation.appendChild(btn);
             });
@@ -181,6 +620,7 @@
         function switchEpisode(index) {
             currentEpisode = index;
             currentPart = 0;
+            currentEpisodeTitle.textContent = episodes[currentEpisode].title;
             initEpisodeTabs();
             initPartNavigation();
             updateVideo();
@@ -202,9 +642,9 @@
 
             videoSource.src = currentEpisodeData.parts[currentPart];
             videoPlayer.load();
-            videoTitle.textContent = `${currentEpisodeData.title} - Part ${currentPart + 1}`;
+            videoTitle.textContent = `Now Playing: Part ${currentPart + 1}`;
             downloadLink.href = currentEpisodeData.parts[currentPart];
-            partIndicator.textContent = `Episode ${currentEpisode + 1}, Part ${currentPart + 1}`;
+            currentEpisodeTitle.textContent = currentEpisodeData.title;
             
             // Handle autoplay restrictions
             videoPlayer.muted = true;
@@ -232,6 +672,7 @@
                 }
             }
             
+            currentEpisodeTitle.textContent = episodes[currentEpisode].title;
             initEpisodeTabs();
             initPartNavigation();
             updateVideo();
@@ -263,6 +704,7 @@
 
         // Initialize player
         document.addEventListener("DOMContentLoaded", () => {
+            currentEpisodeTitle.textContent = episodes[currentEpisode].title;
             initEpisodeTabs();
             initPartNavigation();
             updateVideo();
