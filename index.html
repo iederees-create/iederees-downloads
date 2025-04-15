@@ -1,3 +1,8 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Islamic Resource Hub</title>
 <style>
     /* ===== Base Styles ===== */
     * {
@@ -358,3 +363,118 @@
         }
     }
 </style>
+</head>
+<body>
+    <h1>Download Menu</h1>
+    
+    <main>
+        <div class="link-grid">
+            <a href="GAZA UPDATES/index.html" class="page-link">Gaza updates</a>
+            <a href="AL Wedaa (Cassette Dub)/index.html" class="page-link">AL Wedaa (Cassette Dub)</a>
+            <a href="CapeQasidah/index.html" class="page-link">CapeQasidah</a>
+            <a href="New uploads feed/index.html" class="page-link">New uploads feed</a>
+            <a href="Cape Town dhikr/index.html" class="page-link">Cape Town dhikr</a>
+            <a href="jieke/index.html" class="page-link">Jieke</a>
+            <a href="Ahbab al-Habib/index.html" class="page-link">Ahbab al-Habib</a>
+            <a href="Ratib al haddad/index.html" class="page-link">Ratib al haddad</a>
+        </div>
+
+        <!-- Latest Updates Feed -->
+        <div class="latest-updates">
+            <h2>Latest Updates</h2>
+            <div id="updates-feed">
+                <!-- Updates will be loaded here dynamically -->
+                <p>Loading latest updates...</p>
+            </div>
+            <p><a href="New uploads feed/index.html">View all updates →</a></p>
+        </div>
+
+        <div class="donate">
+            <h2>Donation Information</h2>
+            <p>If you appreciate my work, please consider making a donation to keep this website up and running.</p>
+            <p><strong>Account Name:</strong> Iederees Francis</p>
+            <p><strong>Account Number:</strong> 2118861508 (Nedbank Savings)</p>
+        </div>
+
+         <!-- NextGen Webs Promotion Box -->
+    <div class="nextgen-promo">
+        <div class="nextgen-logo">NextGen Webs</div>
+        <h2>Professional Website Development Services</h2>
+        <p>I specialize in creating affordable, high-quality websites for small businesses and individuals. Let me bring your business online with:</p>
+        <ul style="text-align: left; max-width: 500px; margin: 0 auto 1.5rem; padding-left: 1.5rem;">
+            <li>Modern, mobile-friendly designs</li>
+            <li>Fast loading speeds</li>
+            <li>SEO optimization</li>
+            <li>Social media integration</li>
+            <li>Easy content management</li>
+        </ul>
+        
+        <div class="promo-social">
+            <a href="https://www.facebook.com/Nextgenwebsza/" style="background-color: #3b5998;" target="_blank" aria-label="Facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://www.tiktok.com/@nextgenwebs" style="background-color: #000000;" target="_blank" aria-label="TikTok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="https://wa.me/27686197361" style="background-color: #25D366;" target="_blank" aria-label="WhatsApp">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+        </div>
+        
+        <p>Check out my work and contact me directly:</p>
+        <a href="https://wa.me/27686197361" class="promo-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+        </a>
+        <a href="https://www.facebook.com/Nextgenwebsza/" class="promo-btn" style="background-color: #3b5998;" target="_blank">
+            <i class="fab fa-facebook-f"></i> Visit Facebook Page
+        </a>
+    </div>
+    </main>
+
+    <a href="https://wa.me/27686197361?text=" class="floating-whatsapp" aria-label="Chat on WhatsApp">
+        <img src="images/whatsapp.png" alt="WhatsApp Chat Icon">
+    </a>
+
+    <script>
+        // Function to load latest updates
+        function loadLatestUpdates() {
+            // This would normally fetch from a server or database
+            // For now we'll use a static example that you can update
+            
+            const updates = [
+                {
+                    title: "AlLahbab dune bashing 2",
+                    link: "New uploads feed/index.html#AlLahbab-dune-bashing-2",
+                    date: "June 15, 2023"
+                },
+                {
+                    title: "Nasheed in Praise of Fatima al Zahra",
+                    link: "New uploads feed/index.html#Nasheed-Praise-Fatima",
+                    date: "June 14, 2023"
+                },
+                {
+                    title: "Tijaniyya - Tijani Zikr",
+                    link: "New uploads feed/index.html#Tijaniyya-Zikr",
+                    date: "June 12, 2023"
+                }
+            ];
+            
+            const updatesContainer = document.getElementById('updates-feed');
+            updatesContainer.innerHTML = '';
+            
+            updates.forEach(update => {
+                const updateElement = document.createElement('div');
+                updateElement.className = 'update-item';
+                updateElement.innerHTML = `
+                    <a href="${update.link}">${update.title}</a>
+                    <div class="update-date">${update.date}</div>
+                `;
+                updatesContainer.appendChild(updateElement);
+            });
+        }
+        
+        // Load updates when page loads
+        document.addEventListener('DOMContentLoaded', loadLatestUpdates);
+    </script>
+</body>
+</html>
