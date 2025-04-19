@@ -1,1 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NEW PAGE TITLE HERE - Iederees Francis</title>
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="NEW PAGE TITLE HERE - Islamic Content" />
+    <meta property="og:description" content="Watch inspiring cassette dub videos and share with your community." />
+    <meta property="og:image" content="https://example.com/images/new-preview.jpg" />
+    <meta property="og:url" content="https://example.com/new-video-page" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+    <style>
+        /* Include your complete CSS here — identical to your current page's style */
+        /* You can paste the full style block from your original page */
+    </style>
+</head>
+<body>
+    <h1>NEW PAGE TITLE HERE</h1>
+
+    <div class="video-container">
+        <p id="video-title"></p>
+        <video id="media-player" controls>
+            <source id="media-source" src="" type="video/mp4" />
+            Your browser does not support the video tag.
+        </video>
+        <div class="nav-buttons">
+            <button onclick="changeTrack(-1)">Previous</button>
+            <button onclick="changeTrack(1)">Next</button>
+            <a id="download-link" href="" download>Download</a>
+            <button onclick="shareCurrentTrack()" style="background-color: #3b5998;">
+                <i class="fas fa-share-alt"></i> Share
+            </button>
+        </div>
+    </div>
+
+    <!-- Share Buttons -->
+    <div class="social-section">
+        <h2>Share These Videos</h2>
+        <p>Help spread these videos by sharing with your community</p>
+
+        <div class="share-buttons">
+            <a href="#" class="share-btn share-fb" onclick="shareOnFacebook()">
+                <i class="fab fa-facebook-f"></i> Facebook
+            </a>
+            <a href="#" class="share-btn share-wa" onclick="shareOnWhatsApp()">
+                <i class="fab fa-whatsapp"></i> WhatsApp
+            </a>
+            <a href="#" class="share-btn share-twitter" onclick="shareOnTwitter()">
+                <i class="fab fa-twitter"></i> Twitter
+            </a>
+        </div>
+    </div>
+
+    <!-- Optional Promotion / Donation Boxes -->
+    <div class="donate">
+        <h2>Support This Work</h2>
+        <p>If you find these videos valuable, consider making a donation or spreading the word.</p>
+    </div>
+
+    <div class="advert">
+        <h2>Explore More</h2>
+        <p>Visit our site for more inspiring Islamic content.</p>
+        <img src="https://example.com/logo.png" alt="Site Logo" />
+    </div>
+
+    <div class="nextgen-promo">
+        <div class="nextgen-logo">NextGen Webs</div>
+        <p>Crafted by Iederees Francis using modern web tools.</p>
+        <div class="promo-social">
+            <a href="https://wa.me/27845272182?text=" target="_blank" class="share-wa">
+                <i class="fab fa-whatsapp"></i>
+            </a>
+            <a href="https://facebook.com" target="_blank" class="share-fb">
+                <i class="fab fa-facebook-f"></i>
+            </a>
+            <a href="https://tiktok.com" target="_blank" class="share-twitter">
+                <i class="fab fa-tiktok"></i>
+            </a>
+        </div>
+        <a href="https://example.com" class="promo-btn">Visit Website</a>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+        <a href="index.html" class="back-to-home">← Back to Home</a>
+    </div>
+
+    <!-- WhatsApp Floating Icon -->
+    <a href="https://wa.me/27845272182?text=" class="floating-whatsapp" target="_blank">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/whatsapp.png" alt="WhatsApp" />
+    </a>
+
+    <!-- JavaScript to Manage Video Tracks and Sharing -->
+    <script>
+        const videoList = [
+            {
+                title: "Track 1 - Introduction",
+                src: "videos/track1.mp4",
+            },
+            {
+                title: "Track 2 - Reflection",
+                src: "videos/track2.mp4",
+            },
+            {
+                title: "Track 3 - Closing Message",
+                src: "videos/track3.mp4",
+            },
+        ];
+
+        let currentIndex = 0;
+
+        function updatePlayer() {
+            const current = videoList[currentIndex];
+            document.getElementById("video-title").textContent = current.title;
+            document.getElementById("media-source").src = current.src;
+            document.getElementById("media-player").load();
+            document.getElementById("download-link").href = current.src;
+        }
+
+        function changeTrack(direction) {
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = videoList.length - 1;
+            if (currentIndex >= videoList.length) currentIndex = 0;
+            updatePlayer();
+        }
+
+        function shareCurrentTrack() {
+            const current = videoList[currentIndex];
+            const url = encodeURIComponent(current.src);
+            const title = encodeURIComponent(current.title);
+            const shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}&quote=${title}`;
+            window.open(shareUrl, "_blank");
+        }
+
+        function shareOnFacebook() {
+            shareCurrentTrack();
+        }
+
+        function shareOnWhatsApp() {
+            const current = videoList[currentIndex];
+            const text = encodeURIComponent(`${current.title}: ${current.src}`);
+            window.open(`https://wa.me/?text=${text}`, "_blank");
+        }
+
+        function shareOnTwitter() {
+            const current = videoList[currentIndex];
+            const text = encodeURIComponent(`${current.title}`);
+            const url = encodeURIComponent(current.src);
+            window.open(`https://twitter.com/intent/tweet?text=${text}&url=${url}`, "_blank");
+        }
+
+        // Initialize player on load
+        window.onload = updatePlayer;
+    </script>
+</body>
+</html>
 
