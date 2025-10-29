@@ -2,213 +2,161 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Islamic Resource Hub</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Islamic Resource Hub — Downloads</title>
+  <meta name="description" content="Download Islamic audio, dhikr, nasheed, Cape Qasidah, and more — curated by Iederees Francis." />
 
-  <!-- FontAwesome for icons -->
-  <link rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-    crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <!-- Tailwind for responsive utilities -->
+  <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Shared visual theme -->
   <style>
-    /* ===== Base Styles ===== */
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #0a0a0a;
+      --surface: #111217;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.75);
+      --border: rgba(255,255,255,0.15);
+      --accent: #00bfff;
+      --accent-dark: #0099cc;
+    }
+
     body {
-      font-family: 'Arial', sans-serif;
-      background-color: #1C2B3A;
-      color: #FFFFFF;
-      line-height: 1.6;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
       min-height: 100vh;
       display: flex;
       flex-direction: column;
     }
 
-    h1 {
-      background-color: #1C2B3A;
-      color: #FFFFFF;
-      padding: 1.5rem;
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 1.25rem 1rem;
       text-align: center;
-      font-size: clamp(1.5rem, 4vw, 2rem);
-      margin: 0;
-      border-bottom: 3px solid #00BFFF;
     }
 
-    /* ===== Back to Shop Banner ===== */
-    .back-banner {
-      display: none;
-      background-color: #00BFFF;
-      color: #1C2B3A;
-      padding: 1rem;
-      text-align: center;
-      font-weight: bold;
-      text-decoration: none;
-      border-bottom: 2px solid #0099CC;
-    }
-    .back-banner:hover {
-      background-color: #0099CC;
-      color: #FFFFFF;
+    header h1 {
+      font-size: clamp(1.6rem, 5vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--accent);
     }
 
-    /* ===== Link Grid ===== */
-    .link-grid {
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2rem 1rem 4rem;
+    }
+
+    .grid-links {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 15px;
-      padding: 1.5rem;
+      grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+      gap: 1.25rem;
     }
-    .page-link {
+
+    .card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      text-align: center;
+      padding: 2rem 1rem;
+      font-weight: 700;
+      color: var(--bg);
+      background-color: var(--accent);
+      transition: transform .15s ease, filter .2s ease;
+    }
+
+    .card:hover {
+      filter: brightness(95%);
+      transform: translateY(-3px);
+    }
+
+    footer {
+      text-align: center;
+      font-size: .8rem;
+      color: var(--muted);
+      border-top: 1px solid var(--border);
+      padding: 1rem;
+    }
+
+    /* Floating WhatsApp */
+    .whatsapp {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accent);
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 20px 15px;
-      border-radius: 8px;
+      box-shadow: 0 0 25px rgba(0,191,255,0.3);
+      transition: transform .2s ease, background .2s ease;
+      z-index: 50;
+    }
+
+    .whatsapp:hover {
+      background: var(--accent-dark);
+      transform: scale(1.1);
+    }
+
+    .whatsapp img { width: 34px; height: 34px; }
+
+    /* Back-to-Shop banner (only shows if coming from shop) */
+    #backBanner {
+      display: none;
+      background: var(--accent);
+      color: var(--bg);
       text-align: center;
-      text-decoration: none;
-      font-size: clamp(1.2rem, 3vw, 1.8rem);
-      background-color: #00BFFF;
-      color: #1C2B3A;
-      font-weight: bold;
-      transition: all 0.3s ease;
-      min-height: 80px;
-    }
-    .page-link:hover {
-      background-color: #0099CC;
-      transform: translateY(-3px);
-      box-shadow: 0 4px 8px rgba(0, 191, 255, 0.3);
+      padding: 0.75rem 1rem;
+      font-weight: 700;
     }
 
-    /* ===== Section Boxes ===== */
-    .donate, .latest-updates, .nextgen-promo {
-      background-color: rgba(28, 43, 58, 0.8);
-      border: 1px solid #00BFFF;
-      border-radius: 8px;
-      margin: 1.5rem auto;
-      padding: 1.5rem;
-      width: 90%;
-      max-width: 720px;
-    }
-    h2 {
-      color: #00BFFF;
-      font-size: clamp(1.3rem, 3vw, 1.8rem);
-      margin-bottom: 1rem;
-      text-align: center;
-    }
-    p { text-align: center; font-size: clamp(0.9rem, 2vw, 1rem); }
+    #backBanner:hover { background: var(--accent-dark); color: #fff; }
 
-    /* ===== Footer ===== */
-    footer {
-      margin-top: auto;
-      padding: 1.5rem;
-      text-align: center;
-      background-color: #1C2B3A;
-      border-top: 2px solid #00BFFF;
-    }
-
-    /* ===== Floating WhatsApp ===== */
-    .floating-whatsapp {
-      position: fixed;
-      width: 64px; height: 64px;
-      bottom: 2rem; right: 2rem;
-      background-color: #00BFFF;
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      box-shadow: 0 4px 8px rgba(0, 191, 255, 0.3);
-      z-index: 100;
-      transition: all 0.3s;
-    }
-    .floating-whatsapp:hover {
-      background-color: #0099CC; transform: scale(1.1);
-    }
-    .floating-whatsapp img { width: 40px; height: 40px; }
-
-    /* Responsive */
-    @media (max-width: 768px) {
-      .floating-whatsapp { width: 56px; height: 56px; bottom: 1.5rem; right: 1.5rem; }
-    }
+    /* Prevent layout break on zoom / small screens */
+    html, body { width: 100%; overflow-x: hidden; }
+    * { max-width: 100%; }
   </style>
 </head>
 
 <body>
-  <!-- Back to Shop (shown dynamically if linked from shop) -->
-  <a id="backBanner" href="#" class="back-banner">← Back to Avon + Justine Shop</a>
+  <a id="backBanner" href="#">← Back to Avon + Justine Shop</a>
 
-  <h1>Islamic Resource Hub</h1>
+  <header>
+    <h1>Islamic Resource Hub</h1>
+    <p class="text-sm text-white/70 mt-1">Curated downloads — dhikr, nasheed, qasidah &amp; more</p>
+  </header>
 
   <main>
-    <!-- Grid of Links -->
-    <div class="link-grid">
-      <a href="Rabia Sayed/index.html" class="page-link">Rabia Sayed</a>
-      <a href="GAZA UPDATES/index.html" class="page-link">Gaza Updates</a>
-      <a href="AL Wedaa (Cassette Dub)/index.html" class="page-link">AL Wedaa (Cassette Dub)</a>
-      <a href="CapeQasidah/index.html" class="page-link">Cape Qasidah</a>
-      <a href="New uploads feed/index.html" class="page-link">New Uploads Feed</a>
-      <a href="Cape Town dhikr/index.html" class="page-link">Cape Town Dhikr</a>
-      <a href="jieke/index.html" class="page-link">Jieke</a>
-      <a href="Ahbab al-Habib/index.html" class="page-link">Ahbab al-Habib</a>
-      <a href="Ratib al haddad/index.html" class="page-link">Ratib al Haddad</a>
-    </div>
-
-    <!-- Latest Updates -->
-    <div class="latest-updates">
-      <h2>Latest Updates</h2>
-      <div id="updates-feed"><p>Loading latest updates...</p></div>
-      <p><a href="New uploads feed/index.html">View all updates →</a></p>
-    </div>
-
-    <!-- Donation Box -->
-    <div class="donate">
-      <h2>Donation Information</h2>
-      <p>If you appreciate my work, please consider making a donation to keep this website up and running.</p>
-      <p><strong>Account Name:</strong> Iederees Francis</p>
-      <p><strong>Account Number:</strong> 2118861508 (Nedbank Savings)</p>
-    </div>
-
-    <!-- NextGen Webs Promo -->
-    <div class="nextgen-promo">
-      <h2>NextGen Webs — Professional Website Development</h2>
-      <p>I create modern, mobile-friendly websites for small businesses and individuals.</p>
-      <ul style="text-align:left;max-width:500px;margin:0 auto 1.5rem;padding-left:1.5rem;">
-        <li>Fast loading & SEO-optimized</li>
-        <li>Social media integration</li>
-        <li>Easy content management</li>
-      </ul>
-      <div style="text-align:center;">
-        <a href="https://wa.me/27686197361" class="promo-btn" target="_blank"><i class="fab fa-whatsapp"></i> Chat on WhatsApp</a>
-        <a href="https://www.facebook.com/Nextgenwebsza/" class="promo-btn" style="background:#3b5998;color:#fff;" target="_blank">
-          <i class="fab fa-facebook-f"></i> Facebook Page
-        </a>
-      </div>
-    </div>
+    <section class="grid-links">
+      <a href="Rabia Sayed/index.html" class="card">Rabia Sayed</a>
+      <a href="GAZA UPDATES/index.html" class="card">Gaza Updates</a>
+      <a href="AL Wedaa (Cassette Dub)/index.html" class="card">AL Wedaa (Cassette Dub)</a>
+      <a href="CapeQasidah/index.html" class="card">Cape Qasidah</a>
+      <a href="Cape Town dhikr/index.html" class="card">Cape Town Dhikr</a>
+      <a href="jieke/index.html" class="card">Jieke</a>
+      <a href="Ahbab al-Habib/index.html" class="card">Ahbab al-Habib</a>
+      <a href="Ratib al haddad/index.html" class="card">Ratib al-Haddad</a>
+      <a href="New uploads feed/index.html" class="card">New Uploads Feed</a>
+    </section>
   </main>
 
   <footer>
-    <p>© 2025 Islamic Resource Hub by Iederees Francis. All rights reserved.</p>
+    © 2025 Islamic Resource Hub by Iederees Francis. All rights reserved.
   </footer>
 
-  <a href="https://wa.me/27845272182?text=" class="floating-whatsapp" aria-label="Chat on WhatsApp">
-    <img src="images/whatsapp.png" alt="WhatsApp Chat Icon">
+  <a href="https://wa.me/27845272182?text=" class="whatsapp" aria-label="Chat on WhatsApp">
+    <img src="images/whatsapp.png" alt="WhatsApp" />
   </a>
 
   <script>
-    // Load Latest Updates (demo data)
-    function loadLatestUpdates() {
-      const updates = [
-        { title: "AlLahbab dune bashing 2", link: "New uploads feed/index.html#AlLahbab-dune-bashing-2", date: "June 15, 2023" },
-        { title: "Nasheed in Praise of Fatima al Zahra", link: "New uploads feed/index.html#Nasheed-Praise-Fatima", date: "June 14, 2023" },
-        { title: "Tijaniyya - Tijani Zikr", link: "New uploads feed/index.html#Tijaniyya-Zikr", date: "June 12, 2023" }
-      ];
-      const container = document.getElementById('updates-feed');
-      container.innerHTML = '';
-      updates.forEach(u => {
-        const el = document.createElement('div');
-        el.className = 'update-item';
-        el.innerHTML = `<a href="${u.link}">${u.title}</a><div class="update-date">${u.date}</div>`;
-        container.appendChild(el);
-      });
-    }
-    document.addEventListener('DOMContentLoaded', loadLatestUpdates);
-
-    // If came from Avon + Justine Shop, show Back button
+    // Show "Back to Shop" if coming from your Avon + Justine shop
     (function(){
       const p = new URLSearchParams(location.search);
       const shop = p.get('shop') || document.referrer;
