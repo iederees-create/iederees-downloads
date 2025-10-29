@@ -4,21 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
   <title>Islamic Resource Hub — Downloads</title>
-  <meta name="description" content="Download Islamic audio, dhikr, nasheed, Cape Qasidah, and more — curated by Iederees Francis." />
+  <meta name="description" content="Download Islamic dhikr, qasidah, nasheed, and more — curated by Iederees Francis. Visit our Avon + Justine Shop for exclusive offers." />
 
-  <!-- Tailwind for responsive utilities -->
+  <!-- Tailwind for responsive styling -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Shared visual theme -->
   <style>
     :root {
       --bg: #0a0a0a;
-      --surface: #111217;
+      --surface: #141414;
       --text: #ffffff;
-      --muted: rgba(255,255,255,0.75);
-      --border: rgba(255,255,255,0.15);
-      --accent: #00bfff;
-      --accent-dark: #0099cc;
+      --muted: rgba(255,255,255,0.7);
+      --accent: #E4007F; /* Avon pink */
+      --accent-dark: #b20062;
     }
 
     body {
@@ -28,28 +26,80 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
+      overflow-x: hidden;
     }
 
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      padding: 1.25rem 1rem;
+    /* ===== Fixed Back Button ===== */
+    .back-btn {
+      position: fixed;
+      top: 1rem;
+      left: 1rem;
+      z-index: 50;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-dark);
+      transition: all .25s ease;
+      text-decoration: none;
+    }
+
+    .back-btn:hover {
+      background: var(--accent-dark);
+      color: #fff;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      position: relative;
       text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      background: radial-gradient(circle at top, #1a1a1a 0%, #0a0a0a 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
     }
 
-    header h1 {
-      font-size: clamp(1.6rem, 5vw, 2.2rem);
-      font-weight: 800;
-      letter-spacing: 0.05em;
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 900;
       color: var(--accent);
+      letter-spacing: 0.04em;
     }
 
+    .hero p {
+      color: var(--muted);
+      margin-top: 1rem;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero .btn-primary {
+      margin-top: 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.9rem 1.8rem;
+      border-radius: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-block;
+      border: 1px solid var(--accent-dark);
+      transition: transform .15s ease, filter .2s ease;
+    }
+
+    .hero .btn-primary:hover {
+      filter: brightness(95%);
+      transform: translateY(-2px);
+    }
+
+    /* ===== Link Grid ===== */
     main {
       flex: 1;
       width: 100%;
       max-width: 1100px;
       margin: 0 auto;
-      padding: 2rem 1rem 4rem;
+      padding: 2.5rem 1rem 5rem;
     }
 
     .grid-links {
@@ -60,30 +110,29 @@
 
     .card {
       background: var(--surface);
-      border: 1px solid var(--border);
+      border: 1px solid rgba(255,255,255,0.12);
       border-radius: 1rem;
       text-align: center;
       padding: 2rem 1rem;
+      color: var(--text);
       font-weight: 700;
-      color: var(--bg);
-      background-color: var(--accent);
-      transition: transform .15s ease, filter .2s ease;
+      transition: transform .18s ease, box-shadow .2s ease;
     }
 
     .card:hover {
-      filter: brightness(95%);
       transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(228,0,127,0.25);
     }
 
     footer {
       text-align: center;
       font-size: .8rem;
       color: var(--muted);
-      border-top: 1px solid var(--border);
-      padding: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 1.25rem;
     }
 
-    /* Floating WhatsApp */
+    /* ===== Floating WhatsApp ===== */
     .whatsapp {
       position: fixed;
       bottom: 1.5rem;
@@ -95,7 +144,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 0 25px rgba(0,191,255,0.3);
+      box-shadow: 0 0 25px rgba(228,0,127,0.35);
       transition: transform .2s ease, background .2s ease;
       z-index: 50;
     }
@@ -107,32 +156,22 @@
 
     .whatsapp img { width: 34px; height: 34px; }
 
-    /* Back-to-Shop banner (only shows if coming from shop) */
-    #backBanner {
-      display: none;
-      background: var(--accent);
-      color: var(--bg);
-      text-align: center;
-      padding: 0.75rem 1rem;
-      font-weight: 700;
-    }
-
-    #backBanner:hover { background: var(--accent-dark); color: #fff; }
-
-    /* Prevent layout break on zoom / small screens */
-    html, body { width: 100%; overflow-x: hidden; }
-    * { max-width: 100%; }
+    html, body { scroll-behavior: smooth; }
   </style>
 </head>
 
 <body>
-  <a id="backBanner" href="#">← Back to Avon + Justine Shop</a>
+  <!-- Back to Shop -->
+  <a href="https://iederees-create.github.io/justine_shop/" class="back-btn">← Back to Shop</a>
 
-  <header>
+  <!-- Hero Section -->
+  <section class="hero">
     <h1>Islamic Resource Hub</h1>
-    <p class="text-sm text-white/70 mt-1">Curated downloads — dhikr, nasheed, qasidah &amp; more</p>
-  </header>
+    <p>Free downloads — Dhikr, Qasidah, Nasheed, and Islamic media curated by <strong>Iederees Francis</strong>.</p>
+    <a href="https://iederees-create.github.io/justine_shop/" class="btn-primary">Visit the Avon + Justine Shop</a>
+  </section>
 
+  <!-- Main Downloads -->
   <main>
     <section class="grid-links">
       <a href="Rabia Sayed/index.html" class="card">Rabia Sayed</a>
@@ -148,24 +187,11 @@
   </main>
 
   <footer>
-    © 2025 Islamic Resource Hub by Iederees Francis. All rights reserved.
+    © 2025 Islamic Resource Hub by Iederees Francis — All rights reserved.
   </footer>
 
   <a href="https://wa.me/27845272182?text=" class="whatsapp" aria-label="Chat on WhatsApp">
     <img src="images/whatsapp.png" alt="WhatsApp" />
   </a>
-
-  <script>
-    // Show "Back to Shop" if coming from your Avon + Justine shop
-    (function(){
-      const p = new URLSearchParams(location.search);
-      const shop = p.get('shop') || document.referrer;
-      if (p.get('src') === 'shop' && shop) {
-        const banner = document.getElementById('backBanner');
-        banner.href = shop;
-        banner.style.display = 'block';
-      }
-    })();
-  </script>
 </body>
 </html>
