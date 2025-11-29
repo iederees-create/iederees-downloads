@@ -9,7 +9,7 @@
   <!-- Tailwind for responsive styling -->
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Shared header + footer -->
+  <!-- Shared header + footer injector -->
   <script src="islamic-layout.js" defer></script>
 
   <style>
@@ -35,7 +35,7 @@
     /* ===== Fixed Back Button ===== */
     .back-btn {
       position: fixed;
-      top: calc(var(--header-offset, 72px) + 0.75rem); /* sits nicely below the fixed header */
+      top: calc(var(--header-offset, 72px) + 0.75rem); /* sits just under the fixed header */
       left: 1rem;
       z-index: 50;
       background: var(--accent);
@@ -97,7 +97,7 @@
       transform: translateY(-2px);
     }
 
-    /* ===== Link Grid ===== */
+    /* ===== Main Layout ===== */
     main {
       flex: 1;
       width: 100%;
@@ -126,6 +126,39 @@
     .card:hover {
       transform: translateY(-3px);
       box-shadow: 0 0 20px rgba(228,0,127,0.25);
+    }
+
+    /* ===== Info Sections (About & Contact) ===== */
+    .section-block {
+      margin-top: 3rem;
+      background: var(--surface);
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 2rem 1.5rem;
+    }
+
+    .section-block h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .section-block p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-block a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
     }
 
     /* ===== Floating WhatsApp ===== */
@@ -157,7 +190,7 @@
 </head>
 
 <body>
-  <!-- Back to Shop (fixed pill button, now positioned under the header) -->
+  <!-- Back to Shop -->
   <a href="https://iederees-create.github.io/justine_shop/" class="back-btn">← Back to Shop</a>
 
   <!-- Hero Section -->
@@ -167,8 +200,9 @@
     <a href="https://iederees-create.github.io/justine_shop/" class="btn-primary">Visit the Avon + Justine Shop</a>
   </section>
 
-  <!-- Main Downloads -->
+  <!-- Main Content -->
   <main>
+    <!-- Downloads -->
     <section id="downloads" class="grid-links">
       <a href="Rabia Sayed/index.html" class="card">Rabia Sayed</a>
       <a href="GAZA UPDATES/index.html" class="card">Gaza Updates</a>
@@ -179,6 +213,36 @@
       <a href="Ahbab al-Habib/index.html" class="card">Ahbab al-Habib</a>
       <a href="Ratib al haddad/index.html" class="card">Ratib al-Haddad</a>
       <a href="New uploads feed/index.html" class="card">New Uploads Feed</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-block">
+      <h2>About This Project</h2>
+      <p>
+        The Islamic Resource Hub is a personal project by <strong>Iederees Francis</strong>, gathering
+        dhikr, qasidah, nasheed and related Islamic media into one easy place, especially for the
+        Cape Town community and beyond.
+      </p>
+      <p>
+        Wherever possible, recordings are sourced from trusted local circles and made available for
+        easy listening and downloading, so that remembrance of Allah ﷻ can be part of everyday life.
+      </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-block">
+      <h2>Contact & Requests</h2>
+      <p>
+        For takedown requests, corrections, or if you would like to share additional recordings,
+        you can reach out directly on WhatsApp or email.
+      </p>
+      <p>
+        WhatsApp: <a href="https://wa.me/27845272182?text=Salaam%2C%20I%27m%20contacting%20you%20about%20the%20Islamic%20Resource%20Hub.">+27 84 527 2182</a><br />
+        Email: <a href="mailto:iedereesfrancis@gmail.com">iedereesfrancis@gmail.com</a>
+      </p>
+      <p>
+        Please always support your local masajid, scholars and teachers first.
+      </p>
     </section>
   </main>
 
