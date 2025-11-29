@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Islamic Resource Hub — Downloads</title>
+  <meta name="description" content="Download Islamic dhikr, qasidah, nasheed, and more — curated by Iederees Francis. Visit our Avon + Justine Shop for exclusive offers." />
+
+  <!-- Tailwind for responsive styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Shared header + footer -->
+  <script src="islamic-layout.js" defer></script>
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.7);
+      --accent: #E4007F; /* Avon pink */
+      --accent-dark: #b20062;
+    }
+
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
+    }
+
+    /* ===== Fixed Back Button ===== */
+    .back-btn {
+      position: fixed;
+      top: calc(var(--header-offset, 72px) + 0.75rem); /* sits nicely below the fixed header */
+      left: 1rem;
+      z-index: 50;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-dark);
+      transition: all .25s ease;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .back-btn:hover {
+      background: var(--accent-dark);
+      color: #fff;
+    }
+
+    /* ===== Hero Section ===== */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      background: radial-gradient(circle at top, #1a1a1a 0%, #0a0a0a 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-top: 1rem;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero .btn-primary {
+      margin-top: 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.9rem 1.8rem;
+      border-radius: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-block;
+      border: 1px solid var(--accent-dark);
+      transition: transform .15s ease, filter .2s ease;
+    }
+
+    .hero .btn-primary:hover {
+      filter: brightness(95%);
+      transform: translateY(-2px);
+    }
+
+    /* ===== Link Grid ===== */
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 5rem;
+    }
+
+    .grid-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 1rem;
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text);
+      font-weight: 700;
+      transition: transform .18s ease, box-shadow .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(228,0,127,0.25);
+    }
+
+    /* ===== Floating WhatsApp ===== */
+    .whatsapp {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(228,0,127,0.35);
+      transition: transform .2s ease, background .2s ease;
+      z-index: 50;
+    }
+
+    .whatsapp:hover {
+      background: var(--accent-dark);
+      transform: scale(1.1);
+    }
+
+    .whatsapp img { width: 34px; height: 34px; }
+
+    html, body { scroll-behavior: smooth; }
+  </style>
+</head>
+
+<body>
+  <!-- Back to Shop (fixed pill button, now positioned under the header) -->
+  <a href="https://iederees-create.github.io/justine_shop/" class="back-btn">← Back to Shop</a>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Islamic Resource Hub</h1>
+    <p>Free downloads — Dhikr, Qasidah, Nasheed, and Islamic media curated by <strong>Iederees Francis</strong>.</p>
+    <a href="https://iederees-create.github.io/justine_shop/" class="btn-primary">Visit the Avon + Justine Shop</a>
+  </section>
+
+  <!-- Main Downloads -->
+  <main>
+    <section id="downloads" class="grid-links">
+      <a href="Rabia Sayed/index.html" class="card">Rabia Sayed</a>
+      <a href="GAZA UPDATES/index.html" class="card">Gaza Updates</a>
+      <a href="AL Wedaa (Cassette Dub)/index.html" class="card">AL Wedaa (Cassette Dub)</a>
+      <a href="CapeQasidah/index.html" class="card">Cape Qasidah</a>
+      <a href="Cape Town dhikr/index.html" class="card">Cape Town Dhikr</a>
+      <a href="jieke/index.html" class="card">Jieke</a>
+      <a href="Ahbab al-Habib/index.html" class="card">Ahbab al-Habib</a>
+      <a href="Ratib al haddad/index.html" class="card">Ratib al-Haddad</a>
+      <a href="New uploads feed/index.html" class="card">New Uploads Feed</a>
+    </section>
+  </main>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/27845272182?text=" class="whatsapp" aria-label="Chat on WhatsApp">
+    <img src="images/whatsapp.png" alt="WhatsApp" />
+  </a>
+</body>
+</html>
