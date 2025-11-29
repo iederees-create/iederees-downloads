@@ -1,243 +1,258 @@
-// ==============================
-// ISLAMIC RESOURCE HUB LAYOUT INJECTOR
-// - Injects header + mobile drawer
-// - Injects footer + back-to-top
-// - Handles mobile menu
-// - Header is FIXED (sticky) on scroll
-// ==============================
-document.addEventListener("DOMContentLoaded", () => {
-  console.log("islamic-layout.js loaded");
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>Islamic Resource Hub — Downloads</title>
+  <meta name="description" content="Download Islamic dhikr, qasidah, nasheed, and more — curated by Iederees Francis. Visit our Avon + Justine Shop for exclusive offers." />
 
-  // 0) Inject favicon (applies to every page that loads this script)
-  (function addFavicon() {
-    const existing = document.querySelector('link[rel~="icon"]');
-    if (!existing) {
-      const link = document.createElement("link");
-      link.rel = "icon";
-      link.type = "image/png";
-      // 🔧 Update this to your Islamic Resource Hub favicon path
-      link.href = "images/irh-icon.png";
-      document.head.appendChild(link);
+  <!-- Tailwind for responsive styling -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Shared header + footer injector (separate file) -->
+  <script src="islamic-layout.js" defer></script>
+
+  <style>
+    :root {
+      --bg: #0a0a0a;
+      --surface: #141414;
+      --text: #ffffff;
+      --muted: rgba(255,255,255,0.7);
+      --accent: #E4007F; /* Avon pink */
+      --accent-dark: #b20062;
     }
-  })();
 
-  // 1) Inject shared styles (mobile nav + icon buttons + back-to-top + fixed header offset)
-  const style = document.createElement("style");
-  style.textContent = `
-    .mobile-nav{display:flex;flex-direction:column;gap:.25rem}
-    .mobile-link{display:block;padding:.5rem 0;font-weight:600}
-    .mobile-section{margin-top:.5rem;border-top:1px solid rgba(255,255,255,.08);padding-top:1rem}
-
-    .icon-btn{
-      width:28px;height:28px;display:inline-flex;align-items:center;justify-content:center;
-      border-radius:.375rem;border:1px solid rgba(255,255,255,.15);background:rgba(255,255,255,.06);
-      transition:all .2s
+    body {
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Helvetica, Arial, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow-x: hidden;
     }
-    .icon-btn:hover{border-color:rgba(228,0,127,.6);color:rgb(244,114,182)}
 
-    /* Back-to-top button */
-    .back-to-top{
+    /* ===== Fixed Back Button ===== */
+    .back-btn {
       position: fixed;
-      right: 16px;
-      bottom: calc(env(safe-area-inset-bottom, 0) + 16px);
-      width: 46px; height: 46px;
-      display: flex; align-items: center; justify-content: center;
-      background: #fff; color: #111;
-      border: 1px solid rgba(0,0,0,.15);
-      border-radius: .5rem;
-      box-shadow: 0 10px 20px rgba(0,0,0,.25);
-      z-index: 30;
-      cursor: pointer;
-      font-size: 22px; line-height: 1;
-      -webkit-tap-highlight-color: transparent;
-      touch-action: manipulation;
-      opacity: 0; visibility: hidden; transform: translateY(8px);
-      transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
-    }
-    .back-to-top:hover{ filter: brightness(.95); }
-    .back-to-top:focus-visible{
-      outline: none;
-      box-shadow: 0 0 0 3px rgba(228,0,127,.35), 0 10px 20px rgba(0,0,0,.25);
-    }
-    .back-to-top.show{ opacity: 1; visibility: visible; transform: none; }
-    @media (max-width:640px){
-      .back-to-top{ right: 12px; width: 44px; height: 44px; }
-    }
-    body.menu-open .back-to-top{
-      opacity: 0 !important;
-      visibility: hidden !important;
-      pointer-events: none !important;
+      top: calc(var(--header-offset, 72px) + 0.75rem); /* sits just under the fixed header */
+      left: 1rem;
+      z-index: 50;
+      background: var(--accent);
+      color: var(--bg);
+      font-weight: 700;
+      padding: 0.5rem 1rem;
+      border-radius: 999px;
+      border: 1px solid var(--accent-dark);
+      transition: all .25s ease;
+      text-decoration: none;
+      font-size: 0.9rem;
     }
 
-    /* Push content down so it's not hidden under fixed header */
-    body.with-fixed-header{
-      padding-top: var(--header-offset, 80px);
+    .back-btn:hover {
+      background: var(--accent-dark);
+      color: #fff;
     }
-  `;
-  document.head.appendChild(style);
 
-  // 2) Inject HEADER + MOBILE DRAWER (header is FIXED)
-  const headerHtml = `
-<header class="site-header fixed top-0 left-0 right-0 flex items-center justify-between px-4 md:px-8 py-3 md:py-4 z-50 bg-black/95 text-white border-b border-pink-500/30 backdrop-blur">
-  <!-- LOGO / TITLE -->
-  <a href="index.html" class="flex items-center gap-2">
-    <div class="flex items-center justify-center w-9 h-9 rounded-full bg-pink-600 text-xs font-black tracking-tight">
-      IRH
-    </div>
-    <div class="leading-tight">
-      <div class="text-sm md:text-base font-extrabold tracking-wide uppercase">Islamic Resource Hub</div>
-      <div class="text-[11px] md:text-xs text-pink-200/80 hidden sm:block">Dhikr • Qasidah • Nasheed</div>
-    </div>
+    /* ===== Hero Section ===== */
+    .hero {
+      position: relative;
+      text-align: center;
+      padding: 6rem 1.5rem 4rem;
+      background: radial-gradient(circle at top, #1a1a1a 0%, #0a0a0a 100%);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .hero h1 {
+      font-size: clamp(1.8rem, 5vw, 2.6rem);
+      font-weight: 900;
+      color: var(--accent);
+      letter-spacing: 0.04em;
+    }
+
+    .hero p {
+      color: var(--muted);
+      margin-top: 1rem;
+      font-size: clamp(1rem, 2vw, 1.1rem);
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero .btn-primary {
+      margin-top: 2rem;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.9rem 1.8rem;
+      border-radius: 1rem;
+      font-weight: 800;
+      text-decoration: none;
+      display: inline-block;
+      border: 1px solid var(--accent-dark);
+      transition: transform .15s ease, filter .2s ease;
+    }
+
+    .hero .btn-primary:hover {
+      filter: brightness(95%);
+      transform: translateY(-2px);
+    }
+
+    /* ===== Main Layout ===== */
+    main {
+      flex: 1;
+      width: 100%;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 2.5rem 1rem 5rem;
+    }
+
+    .grid-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fill,minmax(240px,1fr));
+      gap: 1.25rem;
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 1rem;
+      text-align: center;
+      padding: 2rem 1rem;
+      color: var(--text);
+      font-weight: 700;
+      transition: transform .18s ease, box-shadow .2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 0 20px rgba(228,0,127,0.25);
+    }
+
+    /* ===== Info Sections (About & Contact) ===== */
+    .section-block {
+      margin-top: 3rem;
+      background: var(--surface);
+      border-radius: 1rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 2rem 1.5rem;
+    }
+
+    .section-block h2 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    .section-block p {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      margin-bottom: 0.75rem;
+    }
+
+    .section-block a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: underline;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    /* ===== Floating WhatsApp ===== */
+    .whatsapp {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 0 25px rgba(228,0,127,0.35);
+      transition: transform .2s ease, background .2s ease;
+      z-index: 50;
+    }
+
+    .whatsapp:hover {
+      background: var(--accent-dark);
+      transform: scale(1.1);
+    }
+
+    .whatsapp img { width: 34px; height: 34px; }
+
+    html, body { scroll-behavior: smooth; }
+  </style>
+</head>
+
+<body>
+  <!-- Back to Shop -->
+  <a href="https://iederees-create.github.io/justine_shop/" class="back-btn">← Back to Shop</a>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1>Islamic Resource Hub</h1>
+    <p>Free downloads — Dhikr, Qasidah, Nasheed, and Islamic media curated by <strong>Iederees Francis</strong>.</p>
+    <a href="https://iederees-create.github.io/justine_shop/" class="btn-primary">Visit the Avon + Justine Shop</a>
+  </section>
+
+  <!-- Main Content -->
+  <main>
+    <!-- Downloads -->
+    <section id="downloads" class="grid-links">
+      <a href="Rabia Sayed/index.html" class="card">Rabia Sayed</a>
+      <a href="GAZA UPDATES/index.html" class="card">Gaza Updates</a>
+      <a href="AL Wedaa (Cassette Dub)/index.html" class="card">AL Wedaa (Cassette Dub)</a>
+      <a href="CapeQasidah/index.html" class="card">Cape Qasidah</a>
+      <a href="Cape Town dhikr/index.html" class="card">Cape Town Dhikr</a>
+      <a href="jieke/index.html" class="card">Jieke</a>
+      <a href="Ahbab al-Habib/index.html" class="card">Ahbab al-Habib</a>
+      <a href="Ratib al haddad/index.html" class="card">Ratib al-Haddad</a>
+      <a href="New uploads feed/index.html" class="card">New Uploads Feed</a>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section-block">
+      <h2>About This Project</h2>
+      <p>
+        The Islamic Resource Hub is a personal project by <strong>Iederees Francis</strong>, gathering
+        dhikr, qasidah, nasheed and related Islamic media into one easy place, especially for the
+        Cape Town community and beyond.
+      </p>
+      <p>
+        Wherever possible, recordings are sourced from trusted local circles and made available for
+        easy listening and downloading, so that remembrance of Allah ﷻ can be part of everyday life.
+      </p>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-block">
+      <h2>Contact & Requests</h2>
+      <p>
+        For takedown requests, corrections, or if you would like to share additional recordings,
+        you can reach out directly on WhatsApp or email.
+      </p>
+      <p>
+        WhatsApp:
+        <a href="https://wa.me/27845272182?text=Salaam%2C%20I%27m%20contacting%20you%20about%20the%20Islamic%20Resource%20Hub.">
+          +27 84 527 2182
+        </a><br />
+        Email:
+        <a href="mailto:iedereesfrancis@gmail.com">iedereesfrancis@gmail.com</a>
+      </p>
+      <p>
+        Please always support your local masajid, scholars and teachers first.
+      </p>
+    </section>
+  </main>
+
+  <!-- Floating WhatsApp -->
+  <a href="https://wa.me/27845272182?text=" class="whatsapp" aria-label="Chat on WhatsApp">
+    <img src="images/whatsapp.png" alt="WhatsApp" />
   </a>
-
-  <!-- DESKTOP NAV -->
-  <nav class="hidden md:flex items-center space-x-6 text-sm font-medium">
-    <a href="#downloads" class="hover:text-pink-300 transition" data-nav="downloads">Downloads</a>
-    <a href="#about" class="hover:text-pink-300 transition" data-nav="about">About</a>
-    <a href="#contact" class="hover:text-pink-300 transition" data-nav="contact">Contact</a>
-    <a href="https://iederees-create.github.io/justine_shop/" target="_blank" rel="noopener" class="hover:text-pink-300 transition" data-nav="shop">
-      Avon + Justine Shop
-    </a>
-  </nav>
-
-  <!-- DESKTOP ICONS (optional) -->
-  <div class="hidden md:flex items-center space-x-3">
-    <button aria-label="Support" class="icon-btn text-sm">❤️</button>
-  </div>
-
-  <!-- MOBILE MENU BUTTON -->
-  <button id="mobile-menu-button" class="md:hidden text-3xl z-50" aria-label="Open menu">☰</button>
-</header>
-
-<!-- OVERLAY -->
-<div id="overlay" class="fixed inset-0 bg-black/60 hidden z-40"></div>
-
-<!-- MOBILE DRAWER -->
-<div
-  id="mobile-menu"
-  class="fixed top-0 right-0 w-3/4 sm:w-80 h-full bg-[#050509] text-white p-6 transform translate-x-full transition-transform duration-300 z-50 overflow-y-auto shadow-2xl"
->
-  <div class="flex items-start justify-between mb-6">
-    <div>
-      <div class="text-sm font-semibold uppercase tracking-wide text-pink-300">Islamic Resource Hub</div>
-      <div class="text-xs text-pink-200/80 mt-1">Dhikr • Qasidah • Nasheed</div>
-    </div>
-    <button id="close-menu" class="text-2xl leading-none p-1 rounded hover:bg-white/10" aria-label="Close menu">✕</button>
-  </div>
-
-  <nav class="mobile-nav text-[15px]">
-    <a href="#downloads" class="mobile-link" data-nav="downloads">Downloads</a>
-    <a href="#about" class="mobile-link" data-nav="about">About</a>
-    <a href="#contact" class="mobile-link" data-nav="contact">Contact</a>
-    <a href="https://iederees-create.github.io/justine_shop/" target="_blank" rel="noopener" class="mobile-link" data-nav="shop">
-      Avon + Justine Shop
-    </a>
-  </nav>
-</div>
-`;
-  document.body.insertAdjacentHTML("afterbegin", headerHtml);
-
-  // 3) Inject FOOTER + back-to-top
-  const footerHtml = `
-<footer class="footer bg-[#111111] text-gray-200 mt-10">
-  <div class="max-w-4xl mx-auto px-4 py-10 text-center space-y-4">
-    <p class="text-sm md:text-base text-gray-300">
-      Curated Islamic audio and resources for the Ummah — dhikr, qasidah, nasheed, and more.
-    </p>
-    <p class="text-xs text-gray-400">
-      Please use these resources with respect and adab. Support your local scholars and communities.
-    </p>
-  </div>
-  <div class="bg-black text-gray-300 text-xs border-t border-pink-500/30">
-    <div class="max-w-5xl mx-auto px-4 py-4 flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
-      <span>© <span id="year"></span> Islamic Resource Hub — by Iederees Francis</span>
-      <span class="text-gray-400">All rights reserved.</span>
-    </div>
-  </div>
-</footer>
-
-<button id="backToTop" class="back-to-top" aria-label="Back to top" title="Back to top" type="button">↑</button>
-`;
-  document.body.insertAdjacentHTML("beforeend", footerHtml);
-
-  // 4) Make room for the FIXED header (calculate height & set CSS var)
-  const headerEl = document.querySelector(".site-header");
-  if (headerEl) {
-    document.body.classList.add("with-fixed-header");
-    const adjustHeaderOffset = () => {
-      const h = headerEl.offsetHeight || 0;
-      document.documentElement.style.setProperty("--header-offset", h + "px");
-    };
-    window.addEventListener("load", adjustHeaderOffset);
-    window.addEventListener("resize", adjustHeaderOffset);
-    adjustHeaderOffset();
-  }
-
-  // 5) Behavior: footer year
-  const yearSpan = document.getElementById("year");
-  if (yearSpan) yearSpan.textContent = new Date().getFullYear();
-
-  // 6) Behavior: mobile menu
-  const openBtn    = document.getElementById("mobile-menu-button");
-  const closeBtn   = document.getElementById("close-menu");
-  const mobileMenu = document.getElementById("mobile-menu");
-  const overlay    = document.getElementById("overlay");
-
-  function openMenu(){
-    if (!mobileMenu || !overlay) return;
-    mobileMenu.classList.remove("translate-x-full");
-    overlay.classList.remove("hidden");
-    document.body.style.overflow = "hidden";
-    document.body.classList.add("menu-open");
-  }
-
-  function closeMenu(){
-    if (!mobileMenu || !overlay) return;
-    mobileMenu.classList.add("translate-x-full");
-    overlay.classList.add("hidden");
-    document.body.style.overflow = "";
-    document.body.classList.remove("menu-open");
-  }
-
-  if (openBtn)  openBtn.addEventListener("click", openMenu);
-  if (closeBtn) closeBtn.addEventListener("click", closeMenu);
-  if (overlay)  overlay.addEventListener("click", closeMenu);
-
-  document.addEventListener("keydown", e => {
-    if (e.key === "Escape") closeMenu();
-  });
-
-  const mobileLinks = document.querySelectorAll("#mobile-menu a");
-  mobileLinks.forEach(a => a.addEventListener("click", closeMenu));
-
-  window.addEventListener("resize", () => {
-    if (window.matchMedia("(min-width: 768px)").matches) closeMenu();
-  });
-
-  // 7) Back-to-top
-  const backToTop = document.getElementById("backToTop");
-  const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-
-  function updateBackToTop(){
-    if (!backToTop) return;
-    const y = window.pageYOffset || document.documentElement.scrollTop || 0;
-    const menuOpen = document.body.classList.contains("menu-open");
-    backToTop.classList.toggle("show", y > 100 && !menuOpen);
-  }
-
-  function scrollToTop(){
-    const behavior = prefersReduced ? "auto" : "smooth";
-    try {
-      window.scrollTo({ top: 0, behavior });
-    } catch {
-      window.scrollTo(0, 0);
-    }
-  }
-
-  if (backToTop) backToTop.addEventListener("click", scrollToTop);
-
-  ["scroll","resize","orientationchange"].forEach(evt => {
-    window.addEventListener(evt, updateBackToTop, { passive:true });
-  });
-  window.addEventListener("load", () => setTimeout(updateBackToTop, 100));
-});
+</body>
+</html>
