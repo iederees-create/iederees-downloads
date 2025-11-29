@@ -9,6 +9,9 @@
   <!-- Tailwind for responsive styling -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- Shared header + footer -->
+  <script src="islamic-layout.js" defer></script>
+
   <style>
     :root {
       --bg: #0a0a0a;
@@ -32,7 +35,7 @@
     /* ===== Fixed Back Button ===== */
     .back-btn {
       position: fixed;
-      top: 1rem;
+      top: calc(var(--header-offset, 72px) + 0.75rem); /* sits nicely below the fixed header */
       left: 1rem;
       z-index: 50;
       background: var(--accent);
@@ -43,6 +46,7 @@
       border: 1px solid var(--accent-dark);
       transition: all .25s ease;
       text-decoration: none;
+      font-size: 0.9rem;
     }
 
     .back-btn:hover {
@@ -124,14 +128,6 @@
       box-shadow: 0 0 20px rgba(228,0,127,0.25);
     }
 
-    footer {
-      text-align: center;
-      font-size: .8rem;
-      color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,0.1);
-      padding: 1.25rem;
-    }
-
     /* ===== Floating WhatsApp ===== */
     .whatsapp {
       position: fixed;
@@ -161,7 +157,7 @@
 </head>
 
 <body>
-  <!-- Back to Shop -->
+  <!-- Back to Shop (fixed pill button, now positioned under the header) -->
   <a href="https://iederees-create.github.io/justine_shop/" class="back-btn">← Back to Shop</a>
 
   <!-- Hero Section -->
@@ -173,7 +169,7 @@
 
   <!-- Main Downloads -->
   <main>
-    <section class="grid-links">
+    <section id="downloads" class="grid-links">
       <a href="Rabia Sayed/index.html" class="card">Rabia Sayed</a>
       <a href="GAZA UPDATES/index.html" class="card">Gaza Updates</a>
       <a href="AL Wedaa (Cassette Dub)/index.html" class="card">AL Wedaa (Cassette Dub)</a>
@@ -186,10 +182,7 @@
     </section>
   </main>
 
-  <footer>
-    © 2025 Islamic Resource Hub by Iederees Francis — All rights reserved.
-  </footer>
-
+  <!-- Floating WhatsApp -->
   <a href="https://wa.me/27845272182?text=" class="whatsapp" aria-label="Chat on WhatsApp">
     <img src="images/whatsapp.png" alt="WhatsApp" />
   </a>
