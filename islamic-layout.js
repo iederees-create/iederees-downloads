@@ -1,5 +1,5 @@
 /* ================================
-   RAVERSUS UNIVERSAL LAYOUT SYSTEM
+   UNIVERSAL LAYOUT SYSTEM
    Injects Header + Auth + Footer
    ================================ */
 
@@ -89,7 +89,7 @@ document.addEventListener("DOMContentLoaded", () => {
     text-align:center;
     font-size:13px;
   ">
-    <p>© ${new Date().getFullYear()} RAVERSUS — All Rights Reserved</p>
+    <p>© ${new Date().getFullYear()} — All Rights Reserved</p>
   </footer>
   `;
 
