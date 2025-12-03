@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
           background:#3fa9f5;
         "></div>
         <span style="font-size:18px;font-weight:600;">
-          RAVERSUS
+        
         </span>
       </div>
 
